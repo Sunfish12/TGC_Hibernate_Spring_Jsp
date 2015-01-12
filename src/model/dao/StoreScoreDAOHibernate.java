@@ -22,9 +22,9 @@ public class StoreScoreDAOHibernate implements StoreScoreDAO_Interface {
 	}
 
 	@Override
-	public StoreScore findByPrimeKey(Integer storeId) {
+	public StoreScore findByPrimeKey(Integer storeScoreId) {
 		StoreScore storeScore = (StoreScore) hibernateTemplate.get(
-				StoreScore.class, storeId);
+				StoreScore.class, storeScoreId);
 		return storeScore;
 	}
 

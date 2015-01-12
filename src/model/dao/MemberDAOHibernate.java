@@ -34,6 +34,14 @@ public class MemberDAOHibernate implements MemberDAO_Interface {
 		return member;
 	}
 
+	private static final String GET_BY_EMAIL = "from Member where email = ?";
+
+	@Override
+	public List<Member> findByEmail(String email) {
+		List<Member> list = hibernateTemplate.find(GET_BY_EMAIL, email);
+		return list;
+	}
+
 	@Override
 	public List<Member> findByUsername(String username) {
 		Member member = new Member();
@@ -47,9 +55,9 @@ public class MemberDAOHibernate implements MemberDAO_Interface {
 	@Override
 	public List<Member> findByUnknown(String unknown) {
 		String[] unknownQuery = { "%" + unknown + "%", "%" + unknown + "%" };
-		List<Member> result = hibernateTemplate.find(GET_BY_UNKNOWN,
-				unknownQuery);
-		return result;
+		List<Member> list = hibernateTemplate
+				.find(GET_BY_UNKNOWN, unknownQuery);
+		return list;
 	}
 
 	private static final String GET_ALL_STMT = "from Member order by memberId";
@@ -150,7 +158,7 @@ public class MemberDAOHibernate implements MemberDAO_Interface {
 		}
 		dao.insert(bean2);
 		// 修改
-		// Member bean3 = new MemberVO();
+		// Member bean3 = new Member();
 		// bean3.setMemberId(1);
 		// bean3.setUsername("qksniper");
 		// bean3.setPswd("Cc@qksniper".getBytes());
@@ -170,14 +178,14 @@ public class MemberDAOHibernate implements MemberDAO_Interface {
 		// 刪除
 		// dao.delete(1);
 		// 查詢單筆
-		// Member b1 = dao.findByPrimeKey(1);
+		// Member b1 = dao.findByPrimeKey(2);
 		// System.out.println(b1.getUsername());
 		// Set<Member_FavoredType> mft = b1.getMemberFavoredTypes();
 		// for (Member_FavoredType vo : mft) {
 		// System.out.println(vo.getMemberFavoredId());
 		// System.out.println(vo.getFavoredType());
 		// }
-		// List<Member> b2 = dao.findByUsername("pewdiepie");
+		// List<Member> b2 = dao.findByUsername("opchannel");
 		// for (Member vo : b2) {
 		// System.out.println(vo.getUsername());
 		// }

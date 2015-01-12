@@ -5,7 +5,7 @@ import java.util.List;
 import model.StoreScore;
 
 public interface StoreScoreDAO_Interface {
-	public abstract StoreScore findByPrimeKey(Integer storeId);
+	public abstract StoreScore findByPrimeKey(Integer storeScoreId);
 
 	public abstract List<StoreScore> getAll();
 

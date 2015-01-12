@@ -25,7 +25,7 @@ import model.service.GlobalService;
 import model.service.MemberService;
 
 @WebServlet(urlPatterns = { "/RegisterServletMB" })
-@MultipartConfig(location = "E:\\temp", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 500, maxRequestSize = 1024 * 1024 * 500 * 5)
+@MultipartConfig(location = "", fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 500, maxRequestSize = 1024 * 1024 * 500 * 5)
 public class RegisterServletMB extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

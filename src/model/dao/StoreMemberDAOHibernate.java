@@ -142,12 +142,6 @@ public class StoreMemberDAOHibernate implements StoreMemberDAO_Interface {
 	}
 
 	@Override
-	public Set<BoardGames> getBoardGamesesByStoreMemberId(Integer storeMemberId) {
-		Set<BoardGames> set = findByPrimeKey(storeMemberId).getBoardGameses();
-		return set;
-	}
-
-	@Override
 	public Set<StoreInformation> getStoreInformationsByStoreMemberId(
 			Integer storeMemberId) {
 		Set<StoreInformation> set = findByPrimeKey(storeMemberId)

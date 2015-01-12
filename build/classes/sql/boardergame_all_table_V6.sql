@@ -156,7 +156,7 @@ constraint BoardGameKind_primary_key primary key (boardGameSerialNumber));
 --(專賣店)桌遊資訊	BoardGames--
 create table BoardGames(
 boardGamesId							  int IDENTITY (1,1),
-storeMemberId						      int not null,
+storeId									  int not null,
 storeName							      varchar(30),
 boardGameEnglishName					  varchar(30),
 boardGameName							  varchar(50),
@@ -166,7 +166,7 @@ imgFileName								  varchar(50),
 boardGameImage							  image,
 boardGameExplan							  varchar(MAX),
 constraint BoardGames_primary_key primary key (boardGamesId),
-constraint BoardGames_storeMemberId_fk foreign key (storeMemberId) references StoreMember (storeMemberId),
+constraint BoardGames_storeId_fk foreign key (storeId) references StoreInformation (storeId),
 constraint BoardGames_boardGameId_fk foreign key (boardGameSerialNumber) references BoardGameKind (boardGameSerialNumber));
 
 --桌遊圖片	BoardGamesImage--

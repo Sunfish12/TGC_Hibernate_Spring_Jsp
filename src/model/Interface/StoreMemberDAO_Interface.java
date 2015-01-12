@@ -19,9 +19,6 @@ public interface StoreMemberDAO_Interface {
 
 	public abstract void delete(Integer storeMemberId);
 
-	public abstract Set<BoardGames> getBoardGamesesByStoreMemberId(
-			Integer storeMemberId);
-
 	public abstract Set<StoreInformation> getStoreInformationsByStoreMemberId(
 			Integer storeMemberId);
 

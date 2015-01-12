@@ -70,13 +70,10 @@ public class BoardGamesDAOHibernate implements BoardGamesDAO_Interface {
 				.getBean("BoardGamesDAO");
 		// 新增
 		BoardGames bean1 = new BoardGames();
-		StoreMemberDAO_Interface smdao = (StoreMemberDAO_Interface) context
-				.getBean("StoreMemberDAO");
-		StoreMember smbean1 = smdao.findByPrimeKey(1);
-		bean1.setStoreMember(smbean1);
 		StoreInformationDAO_Interface sidao = (StoreInformationDAO_Interface) context
 				.getBean("StoreInformationDAO");
 		StoreInformation sibean1 = sidao.findByPrimeKey(1);
+		bean1.setStoreInformation(sibean1);
 		bean1.setStoreName(sibean1.getStoreName());
 		bean1.setBoardGameEnglishName("Bang!");
 		bean1.setBoardGameName("西部無間");
@@ -107,9 +104,6 @@ public class BoardGamesDAOHibernate implements BoardGamesDAO_Interface {
 		dao.insert(bean1);
 		// 修改
 		// BoardGames bean2 = new BoardGames();
-		// StoreMemberDAO_Interface smdao1 = new StoreMemberDAOHibernate();
-		// StoreMember smbean2 = smdao1.findByPrimeKey(1);
-		// bean2.setStoreMember(smbean2);
 		// StoreInformationDAO_Interface sidao1 = new
 		// StoreInformationDAOHibernate();
 		// StoreInformation sibean2 = sidao1.findByPrimeKey(1);

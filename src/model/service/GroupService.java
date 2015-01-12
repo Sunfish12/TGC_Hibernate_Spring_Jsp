@@ -242,24 +242,25 @@ public class GroupService {
 		// }
 		// service.addGroupRoom(groupRoom_Create);
 		// 加團測試
-//		GroupRoom groupRoom_ToJoin = new GroupRoom();
-//		groupRoom_ToJoin.setGroupSerialNumber(1);
-//		Joiner_Info jInfo = new Joiner_Info();
-//		jInfo.setGroupRoom(groupRoom_ToJoin);
-//		java.util.Date utilDate = java.util.Calendar.getInstance().getTime();
-//		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//		String JoinDate = sdFormat.format(utilDate);
-//		jInfo.setJoinTime(java.sql.Timestamp.valueOf(JoinDate));
-//		service.iWantToJoinThisGroup(jInfo);
-//		jInfo.setUsername("pewdiepie");// 到session撈資料
+		// GroupRoom groupRoom_ToJoin = new GroupRoom();
+		// groupRoom_ToJoin.setGroupSerialNumber(1);
+		// Joiner_Info jInfo = new Joiner_Info();
+		// jInfo.setGroupRoom(groupRoom_ToJoin);
+		// java.util.Date utilDate = java.util.Calendar.getInstance().getTime();
+		// SimpleDateFormat sdFormat = new
+		// SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		// String JoinDate = sdFormat.format(utilDate);
+		// jInfo.setJoinTime(java.sql.Timestamp.valueOf(JoinDate));
+		// service.iWantToJoinThisGroup(jInfo);
+		// jInfo.setUsername("pewdiepie");// 到session撈資料
 		// 退團測試
 		// jInfo.setJoinerInfoSerialNumber(9);
 		// service.iWantToLeaveThisGroup(jInfo);
 		// 找團測試
-		String unknownQuery = "遊";
-		List<GroupRoom> b3 = service.getOneGroupRoom(unknownQuery);
-		for (GroupRoom vo : b3) {
-			System.out.println(vo.getGroupRoomName());
-		}	
+		// String unknownQuery = "遊";
+		// List<GroupRoom> b3 = service.getOneGroupRoom(unknownQuery);
+		// for (GroupRoom vo : b3) {
+		// System.out.println(vo.getGroupRoomName());
+		// }
 	}
 }
