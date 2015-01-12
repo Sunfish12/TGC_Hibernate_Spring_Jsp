@@ -6,8 +6,38 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import model.*;
-import model.Interface.*;
+import model.Administrator;
+import model.GroupRoom_Message;
+import model.Interface.AdministratorDAO_Interface;
+import model.Interface.GroupRoom_MessageDAO_Interface;
+import model.BoardGameKind;
+import model.Interface.BoardGameKindDAO_Interface;
+import model.BoardGames;
+import model.Interface.BoardGamesDAO_Interface;
+import model.GroupChoiceGames;
+import model.Interface.GroupChoiceGamesDAO_Interface;
+import model.GroupRoom;
+import model.Interface.GroupRoomDAO_Interface;
+import model.GroupRoom_Info;
+import model.Interface.GroupRoom_InfoDAO_Interface;
+import model.Joiner_Info;
+import model.Interface.Joiner_InfoDAO_Interface;
+import model.Member;
+import model.Interface.MemberDAO_Interface;
+import model.Member_FavoredType;
+import model.Interface.Member_FavoredTypeDAO_Interface;
+import model.RentalTime;
+import model.Interface.RentalTimeDAO_Interface;
+import model.StoreInformation;
+import model.Interface.StoreInformationDAO_Interface;
+import model.StoreInformation_Image;
+import model.Interface.StoreInformation_ImageDAO_Interface;
+import model.StoreMember;
+import model.Interface.StoreMemberDAO_Interface;
+import model.StoreScore;
+import model.Interface.StoreScoreDAO_Interface;
+import model.TabuUsernameTable;
+import model.Interface.TabuUsernameTableDAO_Interface;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,68 +45,83 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class InsertAndDeleteService {
 
 	public static void main(String[] args) {
-		// 呼叫DAO
+		//呼叫DAO		
 		ApplicationContext context = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		MemberDAO_Interface dao = (MemberDAO_Interface) context
 				.getBean("MemberDAO");
-
+		
 		ApplicationContext context2 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		AdministratorDAO_Interface dao2 = (AdministratorDAO_Interface) context2
 				.getBean("AdministratorDAO");
-
+		
 		ApplicationContext context3 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		StoreMemberDAO_Interface dao3 = (StoreMemberDAO_Interface) context3
 				.getBean("StoreMemberDAO");
-
+		
 		ApplicationContext context4 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		Member_FavoredTypeDAO_Interface dao4 = (Member_FavoredTypeDAO_Interface) context4
 				.getBean("Member_FavoredTypeDAO");
-
+		
+		ApplicationContext context5 = new ClassPathXmlApplicationContext(
+				"model-config1-DriverManagerDataSource.xml");
+		TabuUsernameTableDAO_Interface dao5 = (TabuUsernameTableDAO_Interface) context5
+				.getBean("TabuUsernameTableDAO");
+		
 		ApplicationContext context6 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		StoreInformationDAO_Interface dao6 = (StoreInformationDAO_Interface) context6
 				.getBean("StoreInformationDAO");
-
+		
+		ApplicationContext context7 = new ClassPathXmlApplicationContext(
+				"model-config1-DriverManagerDataSource.xml");
+		StoreInformation_ImageDAO_Interface dao7 = (StoreInformation_ImageDAO_Interface) context7
+				.getBean("StoreInformation_ImageDAO");
+		
 		ApplicationContext context8 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		RentalTimeDAO_Interface dao8 = (RentalTimeDAO_Interface) context8
 				.getBean("RentalTimeDAO");
-
+		
 		ApplicationContext context9 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		StoreScoreDAO_Interface dao9 = (StoreScoreDAO_Interface) context9
 				.getBean("StoreScoreDAO");
-
+		
 		ApplicationContext context10 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		BoardGameKindDAO_Interface dao10 = (BoardGameKindDAO_Interface) context10
 				.getBean("BoardGameKindDAO");
-
+		
 		ApplicationContext context11 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		BoardGamesDAO_Interface dao11 = (BoardGamesDAO_Interface) context11
 				.getBean("BoardGamesDAO");
-
+		
 		ApplicationContext context13 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		GroupRoomDAO_Interface dao13 = (GroupRoomDAO_Interface) context13
 				.getBean("GroupRoomDAO");
-
+		ApplicationContext context14 = new ClassPathXmlApplicationContext(
+				"model-config1-DriverManagerDataSource.xml");
+		GroupRoom_InfoDAO_Interface dao14 = (GroupRoom_InfoDAO_Interface) context14
+				.getBean("GroupRoom_InfoDAO");
 		ApplicationContext context15 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		Joiner_InfoDAO_Interface dao15 = (Joiner_InfoDAO_Interface) context15
 				.getBean("Joiner_InfoDAO");
-
+		ApplicationContext context16 = new ClassPathXmlApplicationContext(
+				"model-config1-DriverManagerDataSource.xml");
+		GroupRoom_MessageDAO_Interface dao16 = (GroupRoom_MessageDAO_Interface) context16
+				.getBean("GroupRoom_MessageDAO");
 		ApplicationContext context17 = new ClassPathXmlApplicationContext(
 				"model-config1-DriverManagerDataSource.xml");
 		GroupChoiceGamesDAO_Interface dao17 = (GroupChoiceGamesDAO_Interface) context17
 				.getBean("GroupChoiceGamesDAO");
-		
-		// insert Member
+		//insert 
 		Member beanMember1 = new Member();
 		beanMember1.setUsername("pewdiepie");
 		beanMember1.setPswd("Aa@pdp".getBytes());
@@ -84,7 +129,7 @@ public class InsertAndDeleteService {
 		beanMember1.setLastname("皮");
 		beanMember1.setFirstname("弟派");
 		beanMember1.setGender("男");
-		beanMember1.setNickname("PewDiePie");
+		beanMember1.setNickname("あかいつき");
 		beanMember1.setBirthday(java.sql.Date.valueOf("1990-10-24"));
 		beanMember1.setIdCard("A154730489");
 		beanMember1.setJoinDate(java.sql.Date.valueOf("2007-2-28"));
@@ -92,15 +137,13 @@ public class InsertAndDeleteService {
 		beanMember1.setMemberAddress("106台北市大安區復興南路一段390號");
 		String filenameMember1 = "Member1.gif";
 		beanMember1.setImgFileName(filenameMember1);
-		File fMember1 = new File("WebContent/res/Member/"
-				+ beanMember1.getImgFileName());
+		File fMember1 = new File("WebContent/res/Member/" + beanMember1.getImgFileName());
 		try {
 			InputStream isMember1 = new FileInputStream(fMember1);
 			ByteArrayOutputStream bufferMember1 = new ByteArrayOutputStream();
 			int nReadMember1;
 			byte[] dataMember1 = new byte[1024];
-			while ((nReadMember1 = isMember1.read(dataMember1, 0,
-					dataMember1.length)) != -1) {
+			while ((nReadMember1 = isMember1.read(dataMember1, 0, dataMember1.length)) != -1) {
 				bufferMember1.write(dataMember1, 0, nReadMember1);
 				bufferMember1.flush();
 			}
@@ -127,15 +170,13 @@ public class InsertAndDeleteService {
 		beanMember2.setMemberAddress("337桃園縣大園鄉華中街46號");
 		String filename2 = "Member2.gif";
 		beanMember2.setImgFileName(filename2);
-		File fMember2 = new File("WebContent/res/Member/"
-				+ beanMember2.getImgFileName());
+		File fMember2 = new File("WebContent/res/Member/" + beanMember2.getImgFileName());
 		try {
 			InputStream isMember2 = new FileInputStream(fMember2);
 			ByteArrayOutputStream bufferMember2 = new ByteArrayOutputStream();
 			int nReadMember2;
 			byte[] dataMember2 = new byte[1024];
-			while ((nReadMember2 = isMember2.read(dataMember2, 0,
-					dataMember2.length)) != -1) {
+			while ((nReadMember2 = isMember2.read(dataMember2, 0, dataMember2.length)) != -1) {
 				bufferMember2.write(dataMember2, 0, nReadMember2);
 				bufferMember2.flush();
 			}
@@ -146,7 +187,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember2);
-
+		
+		
 		Member beanMember3 = new Member();
 		beanMember3.setUsername("qksniper");
 		beanMember3.setPswd("Cc@qksniper".getBytes());
@@ -162,15 +204,13 @@ public class InsertAndDeleteService {
 		beanMember3.setMemberAddress("106台北市大安區敦化南路一段305號");
 		String filename3 = "Member3.jpg";
 		beanMember3.setImgFileName(filename3);
-		File fMember3 = new File("WebContent/res/Member/"
-				+ beanMember3.getImgFileName());
+		File fMember3 = new File("WebContent/res/Member/" + beanMember3.getImgFileName());
 		try {
 			InputStream isMember3 = new FileInputStream(fMember3);
 			ByteArrayOutputStream bufferMember3 = new ByteArrayOutputStream();
 			int nReadMember3;
 			byte[] dataMember3 = new byte[1024];
-			while ((nReadMember3 = isMember3.read(dataMember3, 0,
-					dataMember3.length)) != -1) {
+			while ((nReadMember3 = isMember3.read(dataMember3, 0, dataMember3.length)) != -1) {
 				bufferMember3.write(dataMember3, 0, nReadMember3);
 				bufferMember3.flush();
 			}
@@ -181,7 +221,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember3);
-
+		
+		
 		Member beanMember4 = new Member();
 		beanMember4.setUsername("cclearner");
 		beanMember4.setPswd("Dd@cclearner".getBytes());
@@ -197,8 +238,7 @@ public class InsertAndDeleteService {
 		beanMember4.setMemberAddress("600嘉義市東區蘭井街163號");
 		String filenameMember4 = "Member4.jpg";
 		beanMember4.setImgFileName(filenameMember4);
-		File fMember4 = new File("WebContent/res/Member/"
-				+ beanMember4.getImgFileName());
+		File fMember4 = new File("WebContent/res/Member/" + beanMember4.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember4);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -215,7 +255,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember4);
-
+		
+		
 		Member beanMember5 = new Member();
 		beanMember5.setUsername("steampower");
 		beanMember5.setPswd("Ee@steampower".getBytes());
@@ -231,8 +272,7 @@ public class InsertAndDeleteService {
 		beanMember5.setMemberAddress("973花蓮縣吉安鄉廣豐路126號");
 		String filenameMember5 = "Member5.jpg";
 		beanMember5.setImgFileName(filenameMember5);
-		File fMember5 = new File("WebContent/res/Member/"
-				+ beanMember5.getImgFileName());
+		File fMember5 = new File("WebContent/res/Member/" + beanMember5.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember5);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -249,7 +289,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember5);
-
+		
+		
 		Member beanMember6 = new Member();
 		beanMember6.setUsername("javaprogrammer");
 		beanMember6.setPswd("Ff@javaprogrammer".getBytes());
@@ -265,8 +306,7 @@ public class InsertAndDeleteService {
 		beanMember6.setMemberAddress("200基隆市仁愛區仁二路216號");
 		String filenameMember6 = "Member6.jpg";
 		beanMember6.setImgFileName(filenameMember6);
-		File fMember6 = new File("WebContent/res/Member/"
-				+ beanMember6.getImgFileName());
+		File fMember6 = new File("WebContent/res/Member/" + beanMember6.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember6);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -283,7 +323,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember6);
-
+		
+		
 		Member beanMember7 = new Member();
 		beanMember7.setUsername("bahagamer");
 		beanMember7.setPswd("Gg@bahagamer".getBytes());
@@ -299,8 +340,7 @@ public class InsertAndDeleteService {
 		beanMember7.setMemberAddress("235新北市中和區立言街60號");
 		String filenameMember7 = "Member7.jpg";
 		beanMember7.setImgFileName(filenameMember7);
-		File fMember7 = new File("WebContent/res/Member/"
-				+ beanMember7.getImgFileName());
+		File fMember7 = new File("WebContent/res/Member/" + beanMember7.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember7);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -318,6 +358,7 @@ public class InsertAndDeleteService {
 		}
 		dao.insert(beanMember7);
 
+		
 		Member beanMember8 = new Member();
 		beanMember8.setUsername("Hicupok");
 		beanMember8.setPswd("Hicupok".getBytes());
@@ -333,8 +374,7 @@ public class InsertAndDeleteService {
 		beanMember8.setMemberAddress("436台中市清水區中央路41巷16號");
 		String filenameMember8 = "Member8.gif";
 		beanMember8.setImgFileName(filenameMember8);
-		File fMember8 = new File("WebContent/res/Member/"
-				+ beanMember8.getImgFileName());
+		File fMember8 = new File("WebContent/res/Member/" + beanMember8.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember8);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -351,7 +391,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember8);
-
+		
+		
 		Member beanMember9 = new Member();
 		beanMember9.setUsername("Wompeat");
 		beanMember9.setPswd("Wompeat".getBytes());
@@ -367,8 +408,7 @@ public class InsertAndDeleteService {
 		beanMember9.setMemberAddress("106台北市大安區八德路二段10巷35號");
 		String filenameMember9 = "Member9.jpg";
 		beanMember9.setImgFileName(filenameMember9);
-		File fMember9 = new File("WebContent/res/Member/"
-				+ beanMember9.getImgFileName());
+		File fMember9 = new File("WebContent/res/Member/" + beanMember9.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember9);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -385,7 +425,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember9);
-
+		
+		
 		Member beanMember10 = new Member();
 		beanMember10.setUsername("Condeeng");
 		beanMember10.setPswd("Condeeng".getBytes());
@@ -401,8 +442,7 @@ public class InsertAndDeleteService {
 		beanMember10.setMemberAddress("360苗栗縣苗栗市長安街89巷22號");
 		String filenameMember10 = "Member10.jpg";
 		beanMember10.setImgFileName(filenameMember10);
-		File fMember10 = new File("WebContent/res/Member/"
-				+ beanMember10.getImgFileName());
+		File fMember10 = new File("WebContent/res/Member/" + beanMember10.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember10);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -419,7 +459,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember10);
-
+		
+		
 		Member beanMember11 = new Member();
 		beanMember11.setUsername("Hismasheight");
 		beanMember11.setPswd("Hismasheight".getBytes());
@@ -435,8 +476,7 @@ public class InsertAndDeleteService {
 		beanMember11.setMemberAddress("700台南市中西區海安路二段268號");
 		String filenameMember11 = "Member11.jpg";
 		beanMember11.setImgFileName(filenameMember11);
-		File fMember11 = new File("WebContent/res/Member/"
-				+ beanMember11.getImgFileName());
+		File fMember11 = new File("WebContent/res/Member/" + beanMember11.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember11);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -453,7 +493,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember11);
-
+		
+		
 		Member beanMember12 = new Member();
 		beanMember12.setUsername("Withrect");
 		beanMember12.setPswd("Withrect".getBytes());
@@ -469,8 +510,7 @@ public class InsertAndDeleteService {
 		beanMember12.setMemberAddress("300新竹市香山區中華路四段451巷100號");
 		String filenameMember12 = "Member12.jpg";
 		beanMember12.setImgFileName(filenameMember12);
-		File fMember12 = new File("WebContent/res/Member/"
-				+ beanMember12.getImgFileName());
+		File fMember12 = new File("WebContent/res/Member/" + beanMember12.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember12);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -487,7 +527,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao.insert(beanMember12);
-
+		
+		
 		Member beanMember13 = new Member();
 		beanMember13.setUsername("Bract1957");
 		beanMember13.setPswd("Bract1957".getBytes());
@@ -503,8 +544,7 @@ public class InsertAndDeleteService {
 		beanMember13.setMemberAddress("300新竹市東區東光路252號");
 		String filenameMember13 = "Member13.jpg";
 		beanMember13.setImgFileName(filenameMember13);
-		File fMember13 = new File("WebContent/res/Member/"
-				+ beanMember13.getImgFileName());
+		File fMember13 = new File("WebContent/res/Member/" + beanMember13.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fMember13);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -522,15 +562,16 @@ public class InsertAndDeleteService {
 		}
 		dao.insert(beanMember13);
 
-		// insert Administrator
+		
+		
+		//insert Administrator
 		Administrator beanAdministrator1 = new Administrator();
 		beanAdministrator1.setAdminUsername("Admin001");
 		beanAdministrator1.setAdminPswd("admin001".getBytes());
 		beanAdministrator1.setImgFileName("boardgames.jpg");
 		String filenameAdministrator1 = "Administrator1.jpg";
 		beanAdministrator1.setImgFileName(filenameAdministrator1);
-		File fAdministrator1 = new File("WebContent/res/Administrator/"
-				+ beanAdministrator1.getImgFileName());
+		File fAdministrator1 = new File("WebContent/res/Administrator/" + beanAdministrator1.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fAdministrator1);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -547,8 +588,9 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao2.insert(beanAdministrator1);
-
-		// insert StoreMember
+		
+		
+		//insert StoreMember
 		StoreMember beanStoreMember1 = new StoreMember();
 		beanStoreMember1.setStoreUsername("littleworld");
 		beanStoreMember1.setStorePswd("Zz#littleworld".getBytes());
@@ -556,8 +598,7 @@ public class InsertAndDeleteService {
 		beanStoreMember1.setStorePhone("0920949521");
 		String filenameStoreMember1 = "StoreMember1.jpg";
 		beanStoreMember1.setImgFileName(filenameStoreMember1);
-		File fStoreMember1 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember1.getImgFileName());
+		File fStoreMember1 = new File("WebContent/res/StoreMember/" + beanStoreMember1.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember1);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -577,6 +618,7 @@ public class InsertAndDeleteService {
 		beanStoreMember1.setStoreWebsite("www.littleworld.com");
 		dao3.insert(beanStoreMember1);
 
+		
 		StoreMember beanStoreMember2 = new StoreMember();
 		beanStoreMember2.setStoreUsername("Hinforms");
 		beanStoreMember2.setStorePswd("Hinforms".getBytes());
@@ -584,8 +626,7 @@ public class InsertAndDeleteService {
 		beanStoreMember2.setStorePhone("0968190017");
 		String filenameStoreMember2 = "StoreMember2.gif";
 		beanStoreMember2.setImgFileName(filenameStoreMember2);
-		File fStoreMember2 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember2.getImgFileName());
+		File fStoreMember2 = new File("WebContent/res/StoreMember/" + beanStoreMember2.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember2);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -604,7 +645,8 @@ public class InsertAndDeleteService {
 		beanStoreMember2.setStoreEmail("Hinforms@gmail.com");
 		beanStoreMember2.setStoreWebsite("www.Hinforms.com");
 		dao3.insert(beanStoreMember2);
-
+		
+		
 		StoreMember beanStoreMember3 = new StoreMember();
 		beanStoreMember3.setStoreUsername("Sairing");
 		beanStoreMember3.setStorePswd("Sairing".getBytes());
@@ -612,8 +654,7 @@ public class InsertAndDeleteService {
 		beanStoreMember3.setStorePhone("0960596493");
 		String filenameStoreMember3 = "StoreMember3.jpg";
 		beanStoreMember3.setImgFileName(filenameStoreMember3);
-		File fStoreMember3 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember3.getImgFileName());
+		File fStoreMember3 = new File("WebContent/res/StoreMember/" + beanStoreMember3.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember3);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -632,7 +673,8 @@ public class InsertAndDeleteService {
 		beanStoreMember3.setStoreEmail("Sairing@gmail.com");
 		beanStoreMember3.setStoreWebsite("www.Sairing.com");
 		dao3.insert(beanStoreMember3);
-
+		
+		
 		StoreMember beanStoreMember4 = new StoreMember();
 		beanStoreMember4.setStoreUsername("Youggs");
 		beanStoreMember4.setStorePswd("Youggs".getBytes());
@@ -640,8 +682,7 @@ public class InsertAndDeleteService {
 		beanStoreMember4.setStorePhone("0988868630");
 		String filenameStoreMember4 = "StoreMember4.png";
 		beanStoreMember4.setImgFileName(filenameStoreMember4);
-		File fStoreMember4 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember4.getImgFileName());
+		File fStoreMember4 = new File("WebContent/res/StoreMember/" + beanStoreMember4.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember4);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -660,7 +701,8 @@ public class InsertAndDeleteService {
 		beanStoreMember4.setStoreEmail("Youggs@gmail.com");
 		beanStoreMember4.setStoreWebsite("www.Youggs.com");
 		dao3.insert(beanStoreMember4);
-
+		
+		
 		StoreMember beanStoreMember5 = new StoreMember();
 		beanStoreMember5.setStoreUsername("Alung1971");
 		beanStoreMember5.setStorePswd("Alung1971".getBytes());
@@ -668,8 +710,7 @@ public class InsertAndDeleteService {
 		beanStoreMember5.setStorePhone("0970185923");
 		String filenameStoreMember5 = "StoreMember5.gif";
 		beanStoreMember5.setImgFileName(filenameStoreMember5);
-		File fStoreMember5 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember5.getImgFileName());
+		File fStoreMember5 = new File("WebContent/res/StoreMember/" + beanStoreMember5.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember5);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -688,7 +729,8 @@ public class InsertAndDeleteService {
 		beanStoreMember5.setStoreEmail("Alung1971@gmail.com");
 		beanStoreMember5.setStoreWebsite("www.Alung1971.com");
 		dao3.insert(beanStoreMember5);
-
+		
+		
 		StoreMember beanStoreMember6 = new StoreMember();
 		beanStoreMember6.setStoreUsername("Squitteord");
 		beanStoreMember6.setStorePswd("Squitteord".getBytes());
@@ -696,8 +738,7 @@ public class InsertAndDeleteService {
 		beanStoreMember6.setStorePhone("0928203165");
 		String filenameStoreMember6 = "StoreMember6.jpg";
 		beanStoreMember6.setImgFileName(filenameStoreMember6);
-		File fStoreMember6 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember6.getImgFileName());
+		File fStoreMember6 = new File("WebContent/res/StoreMember/" + beanStoreMember6.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember6);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -716,7 +757,8 @@ public class InsertAndDeleteService {
 		beanStoreMember6.setStoreEmail("Squitteord@gmail.com");
 		beanStoreMember6.setStoreWebsite("www.Squitteord.com");
 		dao3.insert(beanStoreMember6);
-
+		
+		
 		StoreMember beanStoreMember7 = new StoreMember();
 		beanStoreMember7.setStoreUsername("Magaized");
 		beanStoreMember7.setStorePswd("Magaized".getBytes());
@@ -724,8 +766,7 @@ public class InsertAndDeleteService {
 		beanStoreMember7.setStorePhone("0972329006");
 		String filenameStoreMember7 = "StoreMember7.jpg";
 		beanStoreMember7.setImgFileName(filenameStoreMember7);
-		File fStoreMember7 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember7.getImgFileName());
+		File fStoreMember7 = new File("WebContent/res/StoreMember/" + beanStoreMember7.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember7);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -744,7 +785,8 @@ public class InsertAndDeleteService {
 		beanStoreMember7.setStoreEmail("Magaized@gmail.com");
 		beanStoreMember7.setStoreWebsite("www.Magaized.com");
 		dao3.insert(beanStoreMember7);
-
+		
+		
 		StoreMember beanStoreMember8 = new StoreMember();
 		beanStoreMember8.setStoreUsername("Ounceephot");
 		beanStoreMember8.setStorePswd("Ounceephot".getBytes());
@@ -752,8 +794,7 @@ public class InsertAndDeleteService {
 		beanStoreMember8.setStorePhone("0958278786");
 		String filenameStoreMember8 = "StoreMember8.jpg";
 		beanStoreMember8.setImgFileName(filenameStoreMember8);
-		File fStoreMember8 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember8.getImgFileName());
+		File fStoreMember8 = new File("WebContent/res/StoreMember/" + beanStoreMember8.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember8);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -772,7 +813,8 @@ public class InsertAndDeleteService {
 		beanStoreMember8.setStoreEmail("Ounceephot@gmail.com");
 		beanStoreMember8.setStoreWebsite("www.Ounceephot.com");
 		dao3.insert(beanStoreMember8);
-
+		
+		
 		StoreMember beanStoreMember9 = new StoreMember();
 		beanStoreMember9.setStoreUsername("Trephis");
 		beanStoreMember9.setStorePswd("Trephis".getBytes());
@@ -780,8 +822,7 @@ public class InsertAndDeleteService {
 		beanStoreMember9.setStorePhone("0939957399");
 		String filenameStoreMember9 = "StoreMember9.jpg";
 		beanStoreMember9.setImgFileName(filenameStoreMember9);
-		File fStoreMember9 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember9.getImgFileName());
+		File fStoreMember9 = new File("WebContent/res/StoreMember/" + beanStoreMember9.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember9);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -800,7 +841,8 @@ public class InsertAndDeleteService {
 		beanStoreMember9.setStoreEmail("Trephis@gmail.com");
 		beanStoreMember9.setStoreWebsite("www.Trephis.com");
 		dao3.insert(beanStoreMember9);
-
+		
+		
 		StoreMember beanStoreMember10 = new StoreMember();
 		beanStoreMember10.setStoreUsername("Pribits");
 		beanStoreMember10.setStorePswd("Pribits".getBytes());
@@ -808,8 +850,7 @@ public class InsertAndDeleteService {
 		beanStoreMember10.setStorePhone("0960642772");
 		String filenameStoreMember10 = "StoreMember10.jpg";
 		beanStoreMember10.setImgFileName(filenameStoreMember10);
-		File fStoreMember10 = new File("WebContent/res/StoreMember/"
-				+ beanStoreMember10.getImgFileName());
+		File fStoreMember10 = new File("WebContent/res/StoreMember/" + beanStoreMember10.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreMember10);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -828,11 +869,11 @@ public class InsertAndDeleteService {
 		beanStoreMember10.setStoreEmail("Pribits@gmail.com");
 		beanStoreMember10.setStoreWebsite("www.Pribits.com");
 		dao3.insert(beanStoreMember10);
-
-		// insert MemberFavoredType
+		
+		
+		//insert MemberFavoredType
 		Member_FavoredType beanMember_FavoredType1 = new Member_FavoredType();
-		MemberDAO_Interface mdao = (MemberDAO_Interface) context4
-				.getBean("MemberDAO");
+		MemberDAO_Interface mdao = (MemberDAO_Interface) context4.getBean("MemberDAO");
 		Member mbeanMember_FavoredType1 = mdao.findByPrimeKey(1);
 		System.out.println(mbeanMember_FavoredType1.getUsername());
 		beanMember_FavoredType1.setMember(mbeanMember_FavoredType1);
@@ -850,160 +891,166 @@ public class InsertAndDeleteService {
 		beanMember_FavoredType3.setMember(mbeanMember_FavoredType3);
 		beanMember_FavoredType3.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType3);
-
+		
 		Member_FavoredType beanMember_FavoredType4 = new Member_FavoredType();
 		Member mbeanMember_FavoredType4 = mdao.findByPrimeKey(2);
 		beanMember_FavoredType4.setMember(mbeanMember_FavoredType4);
 		beanMember_FavoredType4.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType4);
-
+		
 		Member_FavoredType beanMember_FavoredType5 = new Member_FavoredType();
 		Member mbeanMember_FavoredType5 = mdao.findByPrimeKey(2);
 		beanMember_FavoredType5.setMember(mbeanMember_FavoredType5);
 		beanMember_FavoredType5.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType5);
-
+		
 		Member_FavoredType beanMember_FavoredType6 = new Member_FavoredType();
 		Member mbeanMember_FavoredType6 = mdao.findByPrimeKey(3);
 		beanMember_FavoredType6.setMember(mbeanMember_FavoredType6);
 		beanMember_FavoredType6.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType6);
-
+		
 		Member_FavoredType beanMember_FavoredType7 = new Member_FavoredType();
 		Member mbeanMember_FavoredType7 = mdao.findByPrimeKey(4);
 		beanMember_FavoredType7.setMember(mbeanMember_FavoredType7);
 		beanMember_FavoredType7.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType7);
-
+		
 		Member_FavoredType beanMember_FavoredType8 = new Member_FavoredType();
 		Member mbeanMember_FavoredType8 = mdao.findByPrimeKey(4);
 		beanMember_FavoredType8.setMember(mbeanMember_FavoredType8);
 		beanMember_FavoredType8.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType8);
-
+		
 		Member_FavoredType beanMember_FavoredType9 = new Member_FavoredType();
 		Member mbeanMember_FavoredType9 = mdao.findByPrimeKey(5);
 		beanMember_FavoredType9.setMember(mbeanMember_FavoredType9);
 		beanMember_FavoredType9.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType9);
-
+		
 		Member_FavoredType beanMember_FavoredType10 = new Member_FavoredType();
 		Member mbeanMember_FavoredType10 = mdao.findByPrimeKey(6);
 		beanMember_FavoredType10.setMember(mbeanMember_FavoredType10);
 		beanMember_FavoredType10.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType10);
-
+		
 		Member_FavoredType beanMember_FavoredType11 = new Member_FavoredType();
 		Member mbeanMember_FavoredType11 = mdao.findByPrimeKey(6);
 		beanMember_FavoredType11.setMember(mbeanMember_FavoredType11);
 		beanMember_FavoredType11.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType11);
-
+		
 		Member_FavoredType beanMember_FavoredType12 = new Member_FavoredType();
 		Member mbeanMember_FavoredType12 = mdao.findByPrimeKey(6);
 		beanMember_FavoredType12.setMember(mbeanMember_FavoredType12);
 		beanMember_FavoredType12.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType12);
-
+		
 		Member_FavoredType beanMember_FavoredType13 = new Member_FavoredType();
 		Member mbeanMember_FavoredType13 = mdao.findByPrimeKey(7);
 		beanMember_FavoredType13.setMember(mbeanMember_FavoredType13);
 		beanMember_FavoredType13.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType13);
-
+		
 		Member_FavoredType beanMember_FavoredType14 = new Member_FavoredType();
 		Member mbeanMember_FavoredType14 = mdao.findByPrimeKey(7);
 		beanMember_FavoredType14.setMember(mbeanMember_FavoredType14);
 		beanMember_FavoredType14.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType14);
-
+		
 		Member_FavoredType beanMember_FavoredType15 = new Member_FavoredType();
 		Member mbeanMember_FavoredType15 = mdao.findByPrimeKey(7);
 		beanMember_FavoredType15.setMember(mbeanMember_FavoredType15);
 		beanMember_FavoredType15.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType15);
-
+		
 		Member_FavoredType beanMember_FavoredType16 = new Member_FavoredType();
 		Member mbeanMember_FavoredType16 = mdao.findByPrimeKey(8);
 		beanMember_FavoredType16.setMember(mbeanMember_FavoredType16);
 		beanMember_FavoredType16.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType16);
-
+		
 		Member_FavoredType beanMember_FavoredType17 = new Member_FavoredType();
 		Member mbeanMember_FavoredType17 = mdao.findByPrimeKey(8);
 		beanMember_FavoredType17.setMember(mbeanMember_FavoredType17);
 		beanMember_FavoredType17.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType17);
-
+		
 		Member_FavoredType beanMember_FavoredType18 = new Member_FavoredType();
 		Member mbeanMember_FavoredType18 = mdao.findByPrimeKey(9);
 		beanMember_FavoredType18.setMember(mbeanMember_FavoredType18);
 		beanMember_FavoredType18.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType18);
-
+		
 		Member_FavoredType beanMember_FavoredType19 = new Member_FavoredType();
 		Member mbeanMember_FavoredType19 = mdao.findByPrimeKey(10);
 		beanMember_FavoredType19.setMember(mbeanMember_FavoredType19);
 		beanMember_FavoredType19.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType19);
-
+		
 		Member_FavoredType beanMember_FavoredType20 = new Member_FavoredType();
 		Member mbeanMember_FavoredType20 = mdao.findByPrimeKey(10);
 		beanMember_FavoredType20.setMember(mbeanMember_FavoredType20);
 		beanMember_FavoredType20.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType20);
-
+		
 		Member_FavoredType beanMember_FavoredType21 = new Member_FavoredType();
 		Member mbeanMember_FavoredType21 = mdao.findByPrimeKey(10);
 		beanMember_FavoredType21.setMember(mbeanMember_FavoredType21);
 		beanMember_FavoredType21.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType21);
-
+		
 		Member_FavoredType beanMember_FavoredType22 = new Member_FavoredType();
 		Member mbeanMember_FavoredType22 = mdao.findByPrimeKey(11);
 		beanMember_FavoredType22.setMember(mbeanMember_FavoredType22);
 		beanMember_FavoredType22.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType22);
-
+		
 		Member_FavoredType beanMember_FavoredType23 = new Member_FavoredType();
 		Member mbeanMember_FavoredType23 = mdao.findByPrimeKey(12);
 		beanMember_FavoredType23.setMember(mbeanMember_FavoredType23);
 		beanMember_FavoredType23.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType23);
-
+		
 		Member_FavoredType beanMember_FavoredType24 = new Member_FavoredType();
 		Member mbeanMember_FavoredType24 = mdao.findByPrimeKey(12);
 		beanMember_FavoredType24.setMember(mbeanMember_FavoredType24);
 		beanMember_FavoredType24.setFavoredType("益智遊戲");
 		dao4.insert(beanMember_FavoredType24);
-
+		
 		Member_FavoredType beanMember_FavoredType25 = new Member_FavoredType();
 		Member mbeanMember_FavoredType25 = mdao.findByPrimeKey(13);
 		beanMember_FavoredType25.setMember(mbeanMember_FavoredType25);
 		beanMember_FavoredType25.setFavoredType("策略遊戲");
 		dao4.insert(beanMember_FavoredType25);
-
+		
 		Member_FavoredType beanMember_FavoredType26 = new Member_FavoredType();
 		Member mbeanMember_FavoredType26 = mdao.findByPrimeKey(13);
 		beanMember_FavoredType26.setMember(mbeanMember_FavoredType26);
 		beanMember_FavoredType26.setFavoredType("角色扮演遊戲");
 		dao4.insert(beanMember_FavoredType26);
-
-		// insert TabuUsernameTable
-
-		// insert StoreInformation
+		
+		
+		//insert TabuUsernameTable
+		TabuUsernameTable bean = new TabuUsernameTable();
+		Member gubeanTabuUsernameTable1 = dao.findByPrimeKey(7);
+		bean.setMemberByTabuMemberId(gubeanTabuUsernameTable1);
+		Member gubeanTabuUsernameTable2 = dao.findByPrimeKey(8);
+		bean.setMemberByToTabuMemberId(gubeanTabuUsernameTable2);
+		bean.setTabuReason("大雄把胖虎重要的東西偷走了");
+		dao5.insert(bean);
+		
+		//insert StoreInformation
 		StoreInformation beanStoreInformation1 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation1 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation1 = SMdaoStoreInformation1
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation1 = SMdaoStoreInformation1.findByPrimeKey(1);
 		beanStoreInformation1.setStoreMember(smbeanStoreInformation1);
 		beanStoreInformation1.setStoreName("瘋桌遊-益智遊戲專賣店(汐止店)");
 		beanStoreInformation1.setStoreAddress("新北市汐止區仁愛路160號");
-		String filenameStoreInformation1 = "boardgames.jpg";
+		String filenameStoreInformation1 = "StoreInformation1.jpg";
 		beanStoreInformation1.setImgFileName(filenameStoreInformation1);
-		File fStoreInformation1 = new File("WebContent/res/"
-				+ beanStoreInformation1.getImgFileName());
+		File fStoreInformation1 = new File("WebContent/res/StoreInformation/" + beanStoreInformation1.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation1);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1023,19 +1070,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation1.setRentAreaCost(120.0);
 		beanStoreInformation1.setGroupUpperLimit(50);
 		dao6.insert(beanStoreInformation1);
-
+		
 		StoreInformation beanStoreInformation2 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation2 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation2 = SMdaoStoreInformation2
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation2 = SMdaoStoreInformation2.findByPrimeKey(1);
 		beanStoreInformation2.setStoreMember(smbeanStoreInformation2);
 		beanStoreInformation2.setStoreName("瘋桌遊-益智遊戲專賣店(松山店)");
 		beanStoreInformation2.setStoreAddress("台北市松山區三民路102巷20號");
-		String filenameStoreInformation2 = "boardgames.jpg";
+		String filenameStoreInformation2 = "StoreInformation2.png";
 		beanStoreInformation2.setImgFileName(filenameStoreInformation2);
-		File fStoreInformation2 = new File("WebContent/res/"
-				+ beanStoreInformation2.getImgFileName());
+		File fStoreInformation2 = new File("WebContent/res/StoreInformation/" + beanStoreInformation2.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation2);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1055,19 +1100,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation2.setRentAreaCost(120.0);
 		beanStoreInformation2.setGroupUpperLimit(30);
 		dao6.insert(beanStoreInformation2);
-
+		
 		StoreInformation beanStoreInformation3 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation3 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation3 = SMdaoStoreInformation3
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation3 = SMdaoStoreInformation3.findByPrimeKey(2);
 		beanStoreInformation3.setStoreMember(smbeanStoreInformation3);
 		beanStoreInformation3.setStoreName("卡牌屋-台北店");
 		beanStoreInformation3.setStoreAddress("台北市開封街一段19號2樓");
-		String filenameStoreInformation3 = "boardgames.jpg";
+		String filenameStoreInformation3 = "StoreInformation3.jpg";
 		beanStoreInformation3.setImgFileName(filenameStoreInformation3);
-		File fStoreInformation3 = new File("WebContent/res/"
-				+ beanStoreInformation3.getImgFileName());
+		File fStoreInformation3 = new File("WebContent/res/StoreInformation/" + beanStoreInformation3.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation3);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1087,19 +1130,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation3.setRentAreaCost(110.0);
 		beanStoreInformation3.setGroupUpperLimit(65);
 		dao6.insert(beanStoreInformation3);
-
+		
 		StoreInformation beanStoreInformation4 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation4 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation4 = SMdaoStoreInformation4
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation4 = SMdaoStoreInformation4.findByPrimeKey(2);
 		beanStoreInformation4.setStoreMember(smbeanStoreInformation4);
 		beanStoreInformation4.setStoreName("卡牌屋-新竹店");
 		beanStoreInformation4.setStoreAddress("新竹市東山街85號");
-		String filenameStoreInformation4 = "boardgames.jpg";
+		String filenameStoreInformation4 = "StoreInformation4.jpg";
 		beanStoreInformation4.setImgFileName(filenameStoreInformation4);
-		File fStoreInformation4 = new File("WebContent/res/"
-				+ beanStoreInformation4.getImgFileName());
+		File fStoreInformation4 = new File("WebContent/res/StoreInformation/" + beanStoreInformation4.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation4);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1119,19 +1160,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation4.setRentAreaCost(100.0);
 		beanStoreInformation4.setGroupUpperLimit(120);
 		dao6.insert(beanStoreInformation4);
-
+		
 		StoreInformation beanStoreInformation5 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation5 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation5 = SMdaoStoreInformation5
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation5 = SMdaoStoreInformation5.findByPrimeKey(3);
 		beanStoreInformation5.setStoreMember(smbeanStoreInformation5);
 		beanStoreInformation5.setStoreName("艾客米忠孝復興店");
 		beanStoreInformation5.setStoreAddress("台北市大安區忠孝東路三段305號9F-1");
-		String filenameStoreInformation5 = "boardgames.jpg";
+		String filenameStoreInformation5 = "StoreInformation5.jpeg";
 		beanStoreInformation5.setImgFileName(filenameStoreInformation5);
-		File fStoreInformation5 = new File("WebContent/res/"
-				+ beanStoreInformation5.getImgFileName());
+		File fStoreInformation5 = new File("WebContent/res/StoreInformation/" + beanStoreInformation5.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation5);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1151,19 +1190,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation5.setRentAreaCost(130.0);
 		beanStoreInformation5.setGroupUpperLimit(60);
 		dao6.insert(beanStoreInformation5);
-
+		
 		StoreInformation beanStoreInformation6 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation6 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation6 = SMdaoStoreInformation6
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation6 = SMdaoStoreInformation6.findByPrimeKey(4);
 		beanStoreInformation6.setStoreMember(smbeanStoreInformation6);
 		beanStoreInformation6.setStoreName("艾客米東門店");
 		beanStoreInformation6.setStoreAddress("台北市大安區信義路二段 283 號 3F");
-		String filenameStoreInformation6 = "boardgames.jpg";
+		String filenameStoreInformation6 = "StoreInformation6.jpg";
 		beanStoreInformation6.setImgFileName(filenameStoreInformation6);
-		File fStoreInformation6 = new File("WebContent/res/"
-				+ beanStoreInformation6.getImgFileName());
+		File fStoreInformation6 = new File("WebContent/res/StoreInformation/" + beanStoreInformation6.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation6);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1183,19 +1220,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation6.setRentAreaCost(80.0);
 		beanStoreInformation6.setGroupUpperLimit(70);
 		dao6.insert(beanStoreInformation6);
-
+		
 		StoreInformation beanStoreInformation7 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation7 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation7 = SMdaoStoreInformation7
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation7 = SMdaoStoreInformation7.findByPrimeKey(5);
 		beanStoreInformation7.setStoreMember(smbeanStoreInformation7);
 		beanStoreInformation7.setStoreName("卡卡城-三重店");
 		beanStoreInformation7.setStoreAddress("新北市三重區光興街140號");
-		String filenameStoreInformation7 = "boardgames.jpg";
+		String filenameStoreInformation7 = "StoreInformation7.jpg";
 		beanStoreInformation7.setImgFileName(filenameStoreInformation7);
-		File fStoreInformation7 = new File("WebContent/res/"
-				+ beanStoreInformation7.getImgFileName());
+		File fStoreInformation7 = new File("WebContent/res/StoreInformation/" + beanStoreInformation7.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation7);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1215,19 +1250,17 @@ public class InsertAndDeleteService {
 		beanStoreInformation7.setRentAreaCost(100.0);
 		beanStoreInformation7.setGroupUpperLimit(40);
 		dao6.insert(beanStoreInformation7);
-
+		
 		StoreInformation beanStoreInformation8 = new StoreInformation();
 		StoreMemberDAO_Interface SMdaoStoreInformation8 = (StoreMemberDAO_Interface) context6
 				.getBean("StoreMemberDAO");
-		StoreMember smbeanStoreInformation8 = SMdaoStoreInformation8
-				.findByPrimeKey(1);
+		StoreMember smbeanStoreInformation8 = SMdaoStoreInformation8.findByPrimeKey(6);
 		beanStoreInformation8.setStoreMember(smbeanStoreInformation8);
 		beanStoreInformation8.setStoreName("卡卡城-東門店");
 		beanStoreInformation8.setStoreAddress("台北市大安區金山南路二段12號4樓之2");
-		String filenameStoreInformation8 = "boardgames.jpg";
+		String filenameStoreInformation8 = "StoreInformation8.jpg";
 		beanStoreInformation8.setImgFileName(filenameStoreInformation8);
-		File fStoreInformation8 = new File("WebContent/res/"
-				+ beanStoreInformation8.getImgFileName());
+		File fStoreInformation8 = new File("WebContent/res/StoreInformation/" + beanStoreInformation8.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fStoreInformation8);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1247,10 +1280,930 @@ public class InsertAndDeleteService {
 		beanStoreInformation8.setRentAreaCost(95.0);
 		beanStoreInformation8.setGroupUpperLimit(65);
 		dao6.insert(beanStoreInformation8);
-
-		// insert StoreInformationImage
-
-		// insert RentalTime
+		
+		//insert StoreInformation_Image
+		StoreInformation_Image beanStoreInformation_Image1 = new StoreInformation_Image();
+		
+		StoreInformation sibeanStoreInformation_Image1 = dao6.findByPrimeKey(1);
+		beanStoreInformation_Image1.setStoreInformation(sibeanStoreInformation_Image1);
+		String filenameStoreInformation_Image1 = "StoreInformation_Image_0101.jpg";
+		beanStoreInformation_Image1.setImgFileName(filenameStoreInformation_Image1);
+		File fStoreInformation_Image1 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image1.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image1);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image1.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image1);
+		
+		StoreInformation_Image beanStoreInformation_Image2 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image2 = dao6.findByPrimeKey(1);
+		beanStoreInformation_Image2.setStoreInformation(sibeanStoreInformation_Image2);
+		String filenameStoreInformation_Image2 = "StoreInformation_Image_0102.jpg";
+		beanStoreInformation_Image2.setImgFileName(filenameStoreInformation_Image2);
+		File fStoreInformation_Image2 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image2.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image2);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image2.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image2);
+		
+		StoreInformation_Image beanStoreInformation_Image3 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image3 = dao6.findByPrimeKey(1);
+		beanStoreInformation_Image3.setStoreInformation(sibeanStoreInformation_Image3);
+		String filenameStoreInformation_Image3 = "StoreInformation_Image_0103.jpg";
+		beanStoreInformation_Image3.setImgFileName(filenameStoreInformation_Image3);
+		File fStoreInformation_Image3 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image3.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image3);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image3.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image3);
+		
+		StoreInformation_Image beanStoreInformation_Image4 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image4 = dao6.findByPrimeKey(1);
+		beanStoreInformation_Image4.setStoreInformation(sibeanStoreInformation_Image4);
+		String filenameStoreInformation_Image4 = "StoreInformation_Image_0104.jpg";
+		beanStoreInformation_Image4.setImgFileName(filenameStoreInformation_Image4);
+		File fStoreInformation_Image4 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image4.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image4);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image4.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image4);
+		
+		StoreInformation_Image beanStoreInformation_Image5 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image5 = dao6.findByPrimeKey(1);
+		beanStoreInformation_Image5.setStoreInformation(sibeanStoreInformation_Image5);
+		String filenameStoreInformation_Image5 = "StoreInformation_Image_0105.jpg";
+		beanStoreInformation_Image5.setImgFileName(filenameStoreInformation_Image5);
+		File fStoreInformation_Image5 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image5.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image5);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image5.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image5);
+		
+		StoreInformation_Image beanStoreInformation_Image6 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image6 = dao6.findByPrimeKey(2);
+		beanStoreInformation_Image6.setStoreInformation(sibeanStoreInformation_Image6);
+		String filenameStoreInformation_Image6 = "StoreInformation_Image_0201.jpg";
+		beanStoreInformation_Image6.setImgFileName(filenameStoreInformation_Image6);
+		File fStoreInformation_Image6 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image6.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image6);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image6.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image6);
+		
+		StoreInformation_Image beanStoreInformation_Image7 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image7 = dao6.findByPrimeKey(2);
+		beanStoreInformation_Image7.setStoreInformation(sibeanStoreInformation_Image7);
+		String filenameStoreInformation_Image7 = "StoreInformation_Image_0202.jpg";
+		beanStoreInformation_Image7.setImgFileName(filenameStoreInformation_Image7);
+		File fStoreInformation_Image7 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image7.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image7);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image7.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image7);
+		
+		StoreInformation_Image beanStoreInformation_Image8 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image8 = dao6.findByPrimeKey(2);
+		beanStoreInformation_Image8.setStoreInformation(sibeanStoreInformation_Image8);
+		String filenameStoreInformation_Image8 = "StoreInformation_Image_0203.jpg";
+		beanStoreInformation_Image8.setImgFileName(filenameStoreInformation_Image8);
+		File fStoreInformation_Image8 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image8.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image8);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image8.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image8);
+		
+		StoreInformation_Image beanStoreInformation_Image9 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image9 = dao6.findByPrimeKey(2);
+		beanStoreInformation_Image9.setStoreInformation(sibeanStoreInformation_Image9);
+		String filenameStoreInformation_Image9 = "StoreInformation_Image_0204.jpg";
+		beanStoreInformation_Image9.setImgFileName(filenameStoreInformation_Image9);
+		File fStoreInformation_Image9 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image9.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image9);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image9.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image9);
+		
+		StoreInformation_Image beanStoreInformation_Image10 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image10 = dao6.findByPrimeKey(2);
+		beanStoreInformation_Image10.setStoreInformation(sibeanStoreInformation_Image10);
+		String filenameStoreInformation_Image10 = "StoreInformation_Image_0205.jpg";
+		beanStoreInformation_Image10.setImgFileName(filenameStoreInformation_Image10);
+		File fStoreInformation_Image10 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image10.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image10);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image10.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image10);
+		
+		StoreInformation_Image beanStoreInformation_Image11 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image11 = dao6.findByPrimeKey(3);
+		beanStoreInformation_Image11.setStoreInformation(sibeanStoreInformation_Image11);
+		String filenameStoreInformation_Image11 = "StoreInformation_Image_0301.jpg";
+		beanStoreInformation_Image11.setImgFileName(filenameStoreInformation_Image11);
+		File fStoreInformation_Image11 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image11.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image11);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image11.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image11);
+		
+		StoreInformation_Image beanStoreInformation_Image12 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image12 = dao6.findByPrimeKey(3);
+		beanStoreInformation_Image12.setStoreInformation(sibeanStoreInformation_Image12);
+		String filenameStoreInformation_Image12 = "StoreInformation_Image_0302.jpg";
+		beanStoreInformation_Image12.setImgFileName(filenameStoreInformation_Image12);
+		File fStoreInformation_Image12 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image12.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image12);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image12.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image12);
+		
+		StoreInformation_Image beanStoreInformation_Image13 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image13 = dao6.findByPrimeKey(3);
+		beanStoreInformation_Image13.setStoreInformation(sibeanStoreInformation_Image13);
+		String filenameStoreInformation_Image13 = "StoreInformation_Image_0303.jpg";
+		beanStoreInformation_Image13.setImgFileName(filenameStoreInformation_Image13);
+		File fStoreInformation_Image13 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image13.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image13);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image13.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image13);
+		
+		StoreInformation_Image beanStoreInformation_Image14 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image14 = dao6.findByPrimeKey(3);
+		beanStoreInformation_Image14.setStoreInformation(sibeanStoreInformation_Image14);
+		String filenameStoreInformation_Image14 = "StoreInformation_Image_0304.jpg";
+		beanStoreInformation_Image14.setImgFileName(filenameStoreInformation_Image14);
+		File fStoreInformation_Image14 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image14.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image14);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image14.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image14);
+		
+		StoreInformation_Image beanStoreInformation_Image15 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image15 = dao6.findByPrimeKey(3);
+		beanStoreInformation_Image15.setStoreInformation(sibeanStoreInformation_Image15);
+		String filenameStoreInformation_Image15 = "StoreInformation_Image_0305.jpg";
+		beanStoreInformation_Image15.setImgFileName(filenameStoreInformation_Image15);
+		File fStoreInformation_Image15 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image15.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image15);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image15.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image15);
+		
+		StoreInformation_Image beanStoreInformation_Image16 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image16 = dao6.findByPrimeKey(4);
+		beanStoreInformation_Image16.setStoreInformation(sibeanStoreInformation_Image16);
+		String filenameStoreInformation_Image16 = "StoreInformation_Image_0401.jpg";
+		beanStoreInformation_Image16.setImgFileName(filenameStoreInformation_Image16);
+		File fStoreInformation_Image16 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image16.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image16);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image16.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image16);
+		
+		StoreInformation_Image beanStoreInformation_Image17 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image17 = dao6.findByPrimeKey(4);
+		beanStoreInformation_Image17.setStoreInformation(sibeanStoreInformation_Image17);
+		String filenameStoreInformation_Image17 = "StoreInformation_Image_0402.jpg";
+		beanStoreInformation_Image17.setImgFileName(filenameStoreInformation_Image17);
+		File fStoreInformation_Image17 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image17.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image17);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image17.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image17);
+		
+		StoreInformation_Image beanStoreInformation_Image18 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image18 = dao6.findByPrimeKey(4);
+		beanStoreInformation_Image18.setStoreInformation(sibeanStoreInformation_Image18);
+		String filenameStoreInformation_Image18 = "StoreInformation_Image_0403.jpg";
+		beanStoreInformation_Image18.setImgFileName(filenameStoreInformation_Image18);
+		File fStoreInformation_Image18 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image18.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image18);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image18.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image18);
+		
+		StoreInformation_Image beanStoreInformation_Image19 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image19 = dao6.findByPrimeKey(4);
+		beanStoreInformation_Image19.setStoreInformation(sibeanStoreInformation_Image19);
+		String filenameStoreInformation_Image19 = "StoreInformation_Image_0404.jpg";
+		beanStoreInformation_Image19.setImgFileName(filenameStoreInformation_Image19);
+		File fStoreInformation_Image19 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image19.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image19);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image19.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image19);
+		
+		StoreInformation_Image beanStoreInformation_Image20 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image20 = dao6.findByPrimeKey(4);
+		beanStoreInformation_Image20.setStoreInformation(sibeanStoreInformation_Image20);
+		String filenameStoreInformation_Image20 = "StoreInformation_Image_0405.jpg";
+		beanStoreInformation_Image20.setImgFileName(filenameStoreInformation_Image20);
+		File fStoreInformation_Image20 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image20.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image20);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image20.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image20);
+		
+		StoreInformation_Image beanStoreInformation_Image21 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image21 = dao6.findByPrimeKey(5);
+		beanStoreInformation_Image21.setStoreInformation(sibeanStoreInformation_Image21);
+		String filenameStoreInformation_Image21 = "StoreInformation_Image_0501.jpg";
+		beanStoreInformation_Image21.setImgFileName(filenameStoreInformation_Image21);
+		File fStoreInformation_Image21 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image21.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image21);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image21.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image21);
+		
+		StoreInformation_Image beanStoreInformation_Image22 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image22 = dao6.findByPrimeKey(5);
+		beanStoreInformation_Image22.setStoreInformation(sibeanStoreInformation_Image22);
+		String filenameStoreInformation_Image22 = "StoreInformation_Image_0502.jpg";
+		beanStoreInformation_Image22.setImgFileName(filenameStoreInformation_Image22);
+		File fStoreInformation_Image22 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image22.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image22);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image22.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image22);
+		
+		StoreInformation_Image beanStoreInformation_Image23 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image23 = dao6.findByPrimeKey(5);
+		beanStoreInformation_Image23.setStoreInformation(sibeanStoreInformation_Image23);
+		String filenameStoreInformation_Image23 = "StoreInformation_Image_0503.jpg";
+		beanStoreInformation_Image23.setImgFileName(filenameStoreInformation_Image23);
+		File fStoreInformation_Image23 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image23.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image23);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image23.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image23);
+		
+		StoreInformation_Image beanStoreInformation_Image24 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image24 = dao6.findByPrimeKey(5);
+		beanStoreInformation_Image24.setStoreInformation(sibeanStoreInformation_Image24);
+		String filenameStoreInformation_Image24 = "StoreInformation_Image_0504.jpg";
+		beanStoreInformation_Image24.setImgFileName(filenameStoreInformation_Image24);
+		File fStoreInformation_Image24 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image24.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image24);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image24.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image24);
+		
+		StoreInformation_Image beanStoreInformation_Image25 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image25 = dao6.findByPrimeKey(5);
+		beanStoreInformation_Image25.setStoreInformation(sibeanStoreInformation_Image25);
+		String filenameStoreInformation_Image25 = "StoreInformation_Image_0505.jpg";
+		beanStoreInformation_Image25.setImgFileName(filenameStoreInformation_Image25);
+		File fStoreInformation_Image25 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image25.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image25);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image25.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image25);
+		
+		StoreInformation_Image beanStoreInformation_Image26 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image26 = dao6.findByPrimeKey(6);
+		beanStoreInformation_Image26.setStoreInformation(sibeanStoreInformation_Image26);
+		String filenameStoreInformation_Image26 = "StoreInformation_Image_0601.jpg";
+		beanStoreInformation_Image26.setImgFileName(filenameStoreInformation_Image26);
+		File fStoreInformation_Image26 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image26.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image26);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image26.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image26);
+		
+		StoreInformation_Image beanStoreInformation_Image27 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image27 = dao6.findByPrimeKey(6);
+		beanStoreInformation_Image27.setStoreInformation(sibeanStoreInformation_Image27);
+		String filenameStoreInformation_Image27 = "StoreInformation_Image_0602.jpg";
+		beanStoreInformation_Image27.setImgFileName(filenameStoreInformation_Image27);
+		File fStoreInformation_Image27 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image27.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image27);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image27.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image27);
+		
+		StoreInformation_Image beanStoreInformation_Image28 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image28 = dao6.findByPrimeKey(6);
+		beanStoreInformation_Image28.setStoreInformation(sibeanStoreInformation_Image28);
+		String filenameStoreInformation_Image28 = "StoreInformation_Image_0603.jpg";
+		beanStoreInformation_Image28.setImgFileName(filenameStoreInformation_Image28);
+		File fStoreInformation_Image28 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image28.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image28);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image28.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image28);
+		
+		StoreInformation_Image beanStoreInformation_Image29 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image29 = dao6.findByPrimeKey(6);
+		beanStoreInformation_Image29.setStoreInformation(sibeanStoreInformation_Image29);
+		String filenameStoreInformation_Image29 = "StoreInformation_Image_0604.jpg";
+		beanStoreInformation_Image29.setImgFileName(filenameStoreInformation_Image29);
+		File fStoreInformation_Image29 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image29.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image29);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image29.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image29);
+		
+		StoreInformation_Image beanStoreInformation_Image30 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image30 = dao6.findByPrimeKey(6);
+		beanStoreInformation_Image30.setStoreInformation(sibeanStoreInformation_Image30);
+		String filenameStoreInformation_Image30 = "StoreInformation_Image_0605.jpg";
+		beanStoreInformation_Image30.setImgFileName(filenameStoreInformation_Image30);
+		File fStoreInformation_Image30 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image30.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image30);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image30.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image30);
+		
+		StoreInformation_Image beanStoreInformation_Image31 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image31 = dao6.findByPrimeKey(7);
+		beanStoreInformation_Image31.setStoreInformation(sibeanStoreInformation_Image31);
+		String filenameStoreInformation_Image31 = "StoreInformation_Image_0701.jpg";
+		beanStoreInformation_Image31.setImgFileName(filenameStoreInformation_Image31);
+		File fStoreInformation_Image31 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image31.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image31);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image31.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image31);
+		
+		StoreInformation_Image beanStoreInformation_Image32 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image32 = dao6.findByPrimeKey(7);
+		beanStoreInformation_Image32.setStoreInformation(sibeanStoreInformation_Image32);
+		String filenameStoreInformation_Image32 = "StoreInformation_Image_0702.jpg";
+		beanStoreInformation_Image32.setImgFileName(filenameStoreInformation_Image32);
+		File fStoreInformation_Image32 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image32.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image32);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image32.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image32);
+		
+		StoreInformation_Image beanStoreInformation_Image33 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image33 = dao6.findByPrimeKey(7);
+		beanStoreInformation_Image33.setStoreInformation(sibeanStoreInformation_Image33);
+		String filenameStoreInformation_Image33 = "StoreInformation_Image_0703.jpg";
+		beanStoreInformation_Image33.setImgFileName(filenameStoreInformation_Image33);
+		File fStoreInformation_Image33 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image33.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image33);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image33.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image33);
+		
+		StoreInformation_Image beanStoreInformation_Image34 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image34 = dao6.findByPrimeKey(7);
+		beanStoreInformation_Image34.setStoreInformation(sibeanStoreInformation_Image34);
+		String filenameStoreInformation_Image34 = "StoreInformation_Image_0704.jpg";
+		beanStoreInformation_Image34.setImgFileName(filenameStoreInformation_Image34);
+		File fStoreInformation_Image34 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image34.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image34);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image34.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image34);
+		
+		StoreInformation_Image beanStoreInformation_Image35 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image35 = dao6.findByPrimeKey(7);
+		beanStoreInformation_Image35.setStoreInformation(sibeanStoreInformation_Image35);
+		String filenameStoreInformation_Image35 = "StoreInformation_Image_0705.jpg";
+		beanStoreInformation_Image35.setImgFileName(filenameStoreInformation_Image35);
+		File fStoreInformation_Image35 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image35.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image35);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image35.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image35);
+		
+		StoreInformation_Image beanStoreInformation_Image36 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image36 = dao6.findByPrimeKey(8);
+		beanStoreInformation_Image36.setStoreInformation(sibeanStoreInformation_Image36);
+		String filenameStoreInformation_Image36 = "StoreInformation_Image_0801.jpg";
+		beanStoreInformation_Image36.setImgFileName(filenameStoreInformation_Image36);
+		File fStoreInformation_Image36 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image36.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image36);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image36.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image36);
+		
+		StoreInformation_Image beanStoreInformation_Image37 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image37 = dao6.findByPrimeKey(8);
+		beanStoreInformation_Image37.setStoreInformation(sibeanStoreInformation_Image37);
+		String filenameStoreInformation_Image37 = "StoreInformation_Image_0802.jpg";
+		beanStoreInformation_Image37.setImgFileName(filenameStoreInformation_Image37);
+		File fStoreInformation_Image37 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image37.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image37);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image37.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image37);
+		
+		StoreInformation_Image beanStoreInformation_Image38 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image38 = dao6.findByPrimeKey(8);
+		beanStoreInformation_Image38.setStoreInformation(sibeanStoreInformation_Image38);
+		String filenameStoreInformation_Image38 = "StoreInformation_Image_0803.jpg";
+		beanStoreInformation_Image38.setImgFileName(filenameStoreInformation_Image38);
+		File fStoreInformation_Image38 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image38.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image38);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image38.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image38);
+		
+		StoreInformation_Image beanStoreInformation_Image39 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image39 = dao6.findByPrimeKey(8);
+		beanStoreInformation_Image39.setStoreInformation(sibeanStoreInformation_Image39);
+		String filenameStoreInformation_Image39 = "StoreInformation_Image_0804.jpg";
+		beanStoreInformation_Image39.setImgFileName(filenameStoreInformation_Image39);
+		File fStoreInformation_Image39 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image39.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image39);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image39.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image39);
+		
+		StoreInformation_Image beanStoreInformation_Image40 = new StoreInformation_Image();
+		StoreInformation sibeanStoreInformation_Image40 = dao6.findByPrimeKey(8);
+		beanStoreInformation_Image40.setStoreInformation(sibeanStoreInformation_Image40);
+		String filenameStoreInformation_Image40 = "StoreInformation_Image_0805.jpg";
+		beanStoreInformation_Image40.setImgFileName(filenameStoreInformation_Image40);
+		File fStoreInformation_Image40 = new File("WebContent/res/StoreInformation_Image/" + beanStoreInformation_Image40.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fStoreInformation_Image40);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanStoreInformation_Image40.setAreaImage(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao7.insert(beanStoreInformation_Image40);
+		//insert RentalTime
+		
 		RentalTime beanRentalTime1 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime1 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1285,7 +2238,7 @@ public class InsertAndDeleteService {
 		beanRentalTime1.setSunStart(holidayStart);
 		beanRentalTime1.setSunEnd(holidayEnd);
 		dao8.insert(beanRentalTime1);
-
+		
 		RentalTime beanRentalTime2 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime2 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1320,7 +2273,7 @@ public class InsertAndDeleteService {
 		beanRentalTime2.setSunStart(holidayStart2);
 		beanRentalTime2.setSunEnd(holidayEnd2);
 		dao8.insert(beanRentalTime2);
-
+		
 		RentalTime beanRentalTime3 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime3 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1355,7 +2308,7 @@ public class InsertAndDeleteService {
 		beanRentalTime3.setSunStart(holidayStart3);
 		beanRentalTime3.setSunEnd(holidayEnd3);
 		dao8.insert(beanRentalTime3);
-
+		
 		RentalTime beanRentalTime4 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime4 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1390,7 +2343,7 @@ public class InsertAndDeleteService {
 		beanRentalTime4.setSunStart(holidayStart4);
 		beanRentalTime4.setSunEnd(holidayEnd4);
 		dao8.insert(beanRentalTime4);
-
+		
 		RentalTime beanRentalTime5 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime5 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1429,7 +2382,7 @@ public class InsertAndDeleteService {
 		beanRentalTime5.setSunStart(sunStart5);
 		beanRentalTime5.setSunEnd(sunEnd5);
 		dao8.insert(beanRentalTime5);
-
+		
 		RentalTime beanRentalTime6 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime6 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1468,7 +2421,7 @@ public class InsertAndDeleteService {
 		beanRentalTime6.setSunStart(sunStart6);
 		beanRentalTime6.setSunEnd(sunEnd6);
 		dao8.insert(beanRentalTime6);
-
+		
 		RentalTime beanRentalTime7 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime7 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1503,7 +2456,7 @@ public class InsertAndDeleteService {
 		beanRentalTime7.setSunStart(holidayStart7);
 		beanRentalTime7.setSunEnd(holidayEnd7);
 		dao8.insert(beanRentalTime7);
-
+		
 		RentalTime beanRentalTime8 = new RentalTime();
 		StoreInformationDAO_Interface sidaoRentalTime8 = (StoreInformationDAO_Interface) context8
 				.getBean("StoreInformationDAO");
@@ -1538,8 +2491,8 @@ public class InsertAndDeleteService {
 		beanRentalTime8.setSunStart(holidayStart8);
 		beanRentalTime8.setSunEnd(holidayEnd8);
 		dao8.insert(beanRentalTime8);
-
-		// insert storeScore
+		
+		//storeScore
 		StoreScore beanStoreScore1 = new StoreScore();
 		Member mbeanStoreScore1 = mdao.findByPrimeKey(1);
 		System.out.println(mbeanStoreScore1.getUsername());
@@ -1549,7 +2502,7 @@ public class InsertAndDeleteService {
 		beanStoreScore1.setStoreScore(8.5);
 		beanStoreScore1.setStoreScoreReason("真不錯!!");
 		dao9.insert(beanStoreScore1);
-
+		
 		StoreScore beanStoreScore2 = new StoreScore();
 		Member mbeanStoreScore2 = mdao.findByPrimeKey(2);
 		System.out.println(mbeanStoreScore2.getUsername());
@@ -1559,7 +2512,7 @@ public class InsertAndDeleteService {
 		beanStoreScore2.setStoreScore(9.0);
 		beanStoreScore2.setStoreScoreReason("超棒!!!");
 		dao9.insert(beanStoreScore2);
-
+		
 		StoreScore beanStoreScore3 = new StoreScore();
 		Member mbeanStoreScore3 = mdao.findByPrimeKey(3);
 		System.out.println(mbeanStoreScore3.getUsername());
@@ -1569,7 +2522,7 @@ public class InsertAndDeleteService {
 		beanStoreScore3.setStoreScore(8.0);
 		beanStoreScore3.setStoreScoreReason("好!");
 		dao9.insert(beanStoreScore3);
-
+		
 		StoreScore beanStoreScore4 = new StoreScore();
 		Member mbeanStoreScore4 = mdao.findByPrimeKey(4);
 		System.out.println(mbeanStoreScore4.getUsername());
@@ -1579,7 +2532,7 @@ public class InsertAndDeleteService {
 		beanStoreScore4.setStoreScore(8.0);
 		beanStoreScore4.setStoreScoreReason("好!");
 		dao9.insert(beanStoreScore4);
-
+		
 		StoreScore beanStoreScore5 = new StoreScore();
 		Member mbeanStoreScore5 = mdao.findByPrimeKey(5);
 		System.out.println(mbeanStoreScore5.getUsername());
@@ -1589,7 +2542,7 @@ public class InsertAndDeleteService {
 		beanStoreScore5.setStoreScore(8.5);
 		beanStoreScore5.setStoreScoreReason("真不錯!!");
 		dao9.insert(beanStoreScore5);
-
+		
 		StoreScore beanStoreScore6 = new StoreScore();
 		Member mbeanStoreScore6 = mdao.findByPrimeKey(6);
 		System.out.println(mbeanStoreScore6.getUsername());
@@ -1599,7 +2552,7 @@ public class InsertAndDeleteService {
 		beanStoreScore6.setStoreScore(8.0);
 		beanStoreScore6.setStoreScoreReason("好!");
 		dao9.insert(beanStoreScore6);
-
+		
 		StoreScore beanStoreScore7 = new StoreScore();
 		Member mbeanStoreScore7 = mdao.findByPrimeKey(7);
 		System.out.println(mbeanStoreScore7.getUsername());
@@ -1609,7 +2562,7 @@ public class InsertAndDeleteService {
 		beanStoreScore7.setStoreScore(8.0);
 		beanStoreScore7.setStoreScoreReason("好!");
 		dao9.insert(beanStoreScore7);
-
+		
 		StoreScore beanStoreScore8 = new StoreScore();
 		Member mbeanStoreScore8 = mdao.findByPrimeKey(8);
 		System.out.println(mbeanStoreScore8.getUsername());
@@ -1619,8 +2572,8 @@ public class InsertAndDeleteService {
 		beanStoreScore8.setStoreScore(9.0);
 		beanStoreScore8.setStoreScoreReason("超棒!!!");
 		dao9.insert(beanStoreScore8);
-
-		// insert boardgamekind
+		
+		//select boardgamekind
 		BoardGameKind beanboardgamekind1 = new BoardGameKind();
 		beanboardgamekind1.setBoardGameSerialNumber(1);
 		beanboardgamekind1.setBoardGameStyle("策略遊戲");
@@ -1645,48 +2598,12 @@ public class InsertAndDeleteService {
 		beanboardgamekind5.setBoardGameSerialNumber(5);
 		beanboardgamekind5.setBoardGameStyle("小品遊戲");
 		dao10.insert(beanboardgamekind5);
-
-		// insert boardGames
-		BoardGames beanBoardGames1 = new BoardGames();
-		StoreInformationDAO_Interface sidaoBoardGames1 = (StoreInformationDAO_Interface) context
-				.getBean("StoreInformationDAO");
-		StoreInformation sibeanBoardGames1 = sidaoBoardGames1.findByPrimeKey(1);
-		System.out.println(sidaoBoardGames1.findByPrimeKey(1).getStoreName());
-		beanBoardGames1.setStoreInformation(sibeanBoardGames1);
-		beanBoardGames1.setStoreName(sibeanBoardGames1.getStoreName());
-		beanBoardGames1.setBoardGameEnglishName("Bang!");
-		beanBoardGames1.setBoardGameName("西部無間");
-		BoardGameKindDAO_Interface bgkdaoBoardGames1 = (BoardGameKindDAO_Interface) context
-				.getBean("BoardGameKindDAO");
-		BoardGameKind bgkbeanBoardGames1 = bgkdaoBoardGames1.findByPrimeKey(1);
-		beanBoardGames1.setBoardGameKind(bgkbeanBoardGames1);
-		beanBoardGames1.setBoardGameNumber("4 - 7");
-		String filenameBoardGames1 = "Bang.jpg";
-		beanBoardGames1.setImgFileName(filenameBoardGames1);
-		File fBoardGames1 = new File("WebContent/res/BoardGames/"
-				+ beanBoardGames1.getImgFileName());
-		try {
-			InputStream is = new FileInputStream(fBoardGames1);
-			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-			int nRead;
-			byte[] data = new byte[1024];
-			while ((nRead = is.read(data, 0, data.length)) != -1) {
-				buffer.write(data, 0, nRead);
-				buffer.flush();
-			}
-			data = buffer.toByteArray();
-			is.close();
-			beanBoardGames1.setBoardGameImage(data);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		beanBoardGames1
-				.setBoardGameExplan("如果你活在華語圈，至少家裡會開電視，那麼想必就對上面的對白並不陌生﹔電影無間道在這兩年紅透了半邊天，並且成功地為臥底這個電影的老橋段賦予了新生命，而在 BANG! 這款遊戲中，玩家們來到美國拓荒時期的西部，面對同樣的主題，不同的人物，誰能夠瞞天過海贏得最後的勝利呢？");
-		dao11.insert(beanBoardGames1);
-
-		// insert BoardGamesImage
-
-		// insert GroupRoom
+		
+		//select boardGames
+	
+		//select BoardGamesImage
+		
+		//select GroupRoom
 		GroupRoom beanGroupRoom1 = new GroupRoom();
 		StoreMember smbeanGroupRoom1 = dao3.findByPrimeKey(1);
 		beanGroupRoom1.setStoreMember(smbeanGroupRoom1);
@@ -1706,10 +2623,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom1.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2015-1-1 16:00:00"));
 		beanGroupRoom1.setRoomState(0);
-		String filenameGroupRoom1 = "boardgames.jpg";
+		String filenameGroupRoom1 = "GroupRoom1.jpg";
 		beanGroupRoom1.setImgFileName(filenameGroupRoom1);
-		File fGroupRoom1 = new File("WebContent/res/"
-				+ beanGroupRoom1.getImgFileName());
+		File fGroupRoom1 = new File("WebContent/res/GroupRoom/" + beanGroupRoom1.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom1);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1726,7 +2642,7 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom1);
-
+		
 		GroupRoom beanGroupRoom2 = new GroupRoom();
 		StoreMember smbeanGroupRoom2 = dao3.findByPrimeKey(2);
 		beanGroupRoom2.setStoreMember(smbeanGroupRoom2);
@@ -1746,10 +2662,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom2.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2015-1-10 16:00:00"));
 		beanGroupRoom2.setRoomState(0);
-		String filenameGroupRoom2 = "boardgames.jpg";
+		String filenameGroupRoom2 = "GroupRoom2.jpg";
 		beanGroupRoom2.setImgFileName(filenameGroupRoom2);
-		File fGroupRoom2 = new File("WebContent/res/"
-				+ beanGroupRoom2.getImgFileName());
+		File fGroupRoom2 = new File("WebContent/res/GroupRoom/" + beanGroupRoom2.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom2);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1766,7 +2681,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom2);
-
+		
+		
 		GroupRoom beanGroupRoom3 = new GroupRoom();
 		StoreMember smbeanGroupRoom3 = dao3.findByPrimeKey(3);
 		beanGroupRoom3.setStoreMember(smbeanGroupRoom3);
@@ -1786,10 +2702,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom3.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2014-12-6 18:00:00"));
 		beanGroupRoom3.setRoomState(0);
-		String filenameGroupRoom3 = "boardgames.jpg";
+		String filenameGroupRoom3 = "GroupRoom3.jpg";
 		beanGroupRoom3.setImgFileName(filenameGroupRoom3);
-		File fGroupRoom3 = new File("WebContent/res/"
-				+ beanGroupRoom3.getImgFileName());
+		File fGroupRoom3 = new File("WebContent/res/GroupRoom/" + beanGroupRoom3.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom3);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1806,7 +2721,7 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom3);
-
+		
 		GroupRoom beanGroupRoom4 = new GroupRoom();
 		StoreMember smbeanGroupRoom4 = dao3.findByPrimeKey(4);
 		beanGroupRoom4.setStoreMember(smbeanGroupRoom4);
@@ -1826,10 +2741,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom4.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2014-12-13 15:00:00"));
 		beanGroupRoom4.setRoomState(0);
-		String filenameGroupRoom4 = "boardgames.jpg";
+		String filenameGroupRoom4 = "GroupRoom4.jpg";
 		beanGroupRoom4.setImgFileName(filenameGroupRoom4);
-		File fGroupRoom4 = new File("WebContent/res/"
-				+ beanGroupRoom4.getImgFileName());
+		File fGroupRoom4 = new File("WebContent/res/GroupRoom/" + beanGroupRoom4.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom4);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1846,7 +2760,7 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom4);
-
+		
 		GroupRoom beanGroupRoom5 = new GroupRoom();
 		StoreMember smbeanGroupRoom5 = dao3.findByPrimeKey(5);
 		beanGroupRoom5.setStoreMember(smbeanGroupRoom5);
@@ -1866,10 +2780,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom5.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2014-10-4 16:00:00"));
 		beanGroupRoom5.setRoomState(0);
-		String filenameGroupRoom5 = "boardgames.jpg";
+		String filenameGroupRoom5 = "GroupRoom5.jpg";
 		beanGroupRoom5.setImgFileName(filenameGroupRoom5);
-		File fGroupRoom5 = new File("WebContent/res/"
-				+ beanGroupRoom5.getImgFileName());
+		File fGroupRoom5 = new File("WebContent/res/GroupRoom/" + beanGroupRoom5.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom5);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1886,7 +2799,8 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom5);
-
+		
+		
 		GroupRoom beanGroupRoom6 = new GroupRoom();
 		StoreMember smbeanGroupRoom6 = dao3.findByPrimeKey(6);
 		beanGroupRoom6.setStoreMember(smbeanGroupRoom6);
@@ -1906,10 +2820,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom6.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2014-12-13 15:00:00"));
 		beanGroupRoom6.setRoomState(0);
-		String filenameGroupRoom6 = "boardgames.jpg";
+		String filenameGroupRoom6 = "GroupRoom6.jpg";
 		beanGroupRoom6.setImgFileName(filenameGroupRoom6);
-		File fGroupRoom6 = new File("WebContent/res/"
-				+ beanGroupRoom6.getImgFileName());
+		File fGroupRoom6 = new File("WebContent/res/GroupRoom/" + beanGroupRoom6.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom6);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1926,7 +2839,7 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom6);
-
+		
 		GroupRoom beanGroupRoom7 = new GroupRoom();
 		StoreMember smbeanGroupRoom7 = dao3.findByPrimeKey(7);
 		beanGroupRoom7.setStoreMember(smbeanGroupRoom7);
@@ -1946,10 +2859,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom7.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2015-1-10 19:00:00"));
 		beanGroupRoom7.setRoomState(0);
-		String filenameGroupRoom7 = "boardgames.jpg";
+		String filenameGroupRoom7 = "GroupRoom7.png";
 		beanGroupRoom7.setImgFileName(filenameGroupRoom7);
-		File fGroupRoom7 = new File("WebContent/res/"
-				+ beanGroupRoom7.getImgFileName());
+		File fGroupRoom7 = new File("WebContent/res/GroupRoom/" + beanGroupRoom7.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom7);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -1966,7 +2878,7 @@ public class InsertAndDeleteService {
 			e.printStackTrace();
 		}
 		dao13.insert(beanGroupRoom7);
-
+		
 		GroupRoom beanGroupRoom8 = new GroupRoom();
 		StoreMember smbeanGroupRoom8 = dao3.findByPrimeKey(8);
 		beanGroupRoom8.setStoreMember(smbeanGroupRoom8);
@@ -1986,10 +2898,9 @@ public class InsertAndDeleteService {
 		beanGroupRoom8.setReserveGroupEndTime(java.sql.Timestamp
 				.valueOf("2014-12-27 18:00:00"));
 		beanGroupRoom8.setRoomState(0);
-		String filenameGroupRoom8 = "boardgames.jpg";
+		String filenameGroupRoom8 = "GroupRoom8.jpg";
 		beanGroupRoom8.setImgFileName(filenameGroupRoom8);
-		File fGroupRoom8 = new File("WebContent/res/"
-				+ beanGroupRoom8.getImgFileName());
+		File fGroupRoom8 = new File("WebContent/res/GroupRoom/" + beanGroupRoom8.getImgFileName());
 		try {
 			InputStream is = new FileInputStream(fGroupRoom8);
 			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -2007,65 +2918,757 @@ public class InsertAndDeleteService {
 		}
 		dao13.insert(beanGroupRoom8);
 
-		// insert GroupRoomInfo
-
-		// insert Joiner_Info
+		//insert GroupRoomInfo
+		GroupRoom_Info beanGroupRoom_Info1 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info1 = dao13.findByPrimeKey(1);
+		
+		beanGroupRoom_Info1.setGroupRoom(grbeanGroupRoom_Info1);
+		
+		String filenameGroupRoom_Info1 = "GroupRoomInfo_0101.jpg";
+		beanGroupRoom_Info1.setImgFileName(filenameGroupRoom_Info1);
+		File fGroupRoom_Info1 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info1.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info1);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info1.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info1);
+		
+		GroupRoom_Info beanGroupRoom_Info2 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info2 = dao13.findByPrimeKey(1);
+		beanGroupRoom_Info2.setGroupRoom(grbeanGroupRoom_Info2);
+		String filenameGroupRoom_Info2 = "GroupRoomInfo_0102.jpg";
+		beanGroupRoom_Info2.setImgFileName(filenameGroupRoom_Info2);
+		File fGroupRoom_Info2 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info2.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info2);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info2.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info2);
+		
+		GroupRoom_Info beanGroupRoom_Info3 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info3 = dao13.findByPrimeKey(1);
+		beanGroupRoom_Info3.setGroupRoom(grbeanGroupRoom_Info3);
+		String filenameGroupRoom_Info3 = "GroupRoomInfo_0103.jpg";
+		beanGroupRoom_Info3.setImgFileName(filenameGroupRoom_Info3);
+		File fGroupRoom_Info3 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info3.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info3);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info3.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info3);
+		
+		GroupRoom_Info beanGroupRoom_Info4 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info4 = dao13.findByPrimeKey(2);
+		beanGroupRoom_Info4.setGroupRoom(grbeanGroupRoom_Info4);
+		String filenameGroupRoom_Info4 = "GroupRoomInfo_0201.jpg";
+		beanGroupRoom_Info4.setImgFileName(filenameGroupRoom_Info4);
+		File fGroupRoom_Info4 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info4.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info4);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info4.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info4);
+		
+		GroupRoom_Info beanGroupRoom_Info5 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info5 = dao13.findByPrimeKey(2);
+		beanGroupRoom_Info5.setGroupRoom(grbeanGroupRoom_Info5);
+		String filenameGroupRoom_Info5 = "GroupRoomInfo_0202.jpg";
+		beanGroupRoom_Info5.setImgFileName(filenameGroupRoom_Info5);
+		File fGroupRoom_Info5 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info5.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info5);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info5.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info5);
+		
+		GroupRoom_Info beanGroupRoom_Info6 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info6 = dao13.findByPrimeKey(2);
+		beanGroupRoom_Info6.setGroupRoom(grbeanGroupRoom_Info6);
+		String filenameGroupRoom_Info6 = "GroupRoomInfo_0203.jpg";
+		beanGroupRoom_Info6.setImgFileName(filenameGroupRoom_Info6);
+		File fGroupRoom_Info6 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info6.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info6);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info6.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info6);
+		
+		GroupRoom_Info beanGroupRoom_Info7 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info7 = dao13.findByPrimeKey(3);
+		beanGroupRoom_Info7.setGroupRoom(grbeanGroupRoom_Info7);
+		String filenameGroupRoom_Info7 = "GroupRoomInfo_0301.jpg";
+		beanGroupRoom_Info7.setImgFileName(filenameGroupRoom_Info7);
+		File fGroupRoom_Info7 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info7.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info7);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info7.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info7);
+		
+		GroupRoom_Info beanGroupRoom_Info8 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info8 = dao13.findByPrimeKey(3);
+		beanGroupRoom_Info8.setGroupRoom(grbeanGroupRoom_Info8);
+		String filenameGroupRoom_Info8 = "GroupRoomInfo_0302.jpg";
+		beanGroupRoom_Info8.setImgFileName(filenameGroupRoom_Info8);
+		File fGroupRoom_Info8 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info8.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info8);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info8.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info8);
+		
+		GroupRoom_Info beanGroupRoom_Info9 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info9 = dao13.findByPrimeKey(3);
+		beanGroupRoom_Info9.setGroupRoom(grbeanGroupRoom_Info9);
+		String filenameGroupRoom_Info9 = "GroupRoomInfo_0303.jpg";
+		beanGroupRoom_Info9.setImgFileName(filenameGroupRoom_Info9);
+		File fGroupRoom_Info9 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info9.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info9);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info9.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info9);
+		
+		GroupRoom_Info beanGroupRoom_Info10 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info10 = dao13.findByPrimeKey(3);
+		beanGroupRoom_Info10.setGroupRoom(grbeanGroupRoom_Info10);
+		String filenameGroupRoom_Info10 = "GroupRoomInfo_0304.jpg";
+		beanGroupRoom_Info10.setImgFileName(filenameGroupRoom_Info10);
+		File fGroupRoom_Info10 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info10.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info10);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info10.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info10);
+		
+		GroupRoom_Info beanGroupRoom_Info11 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info11 = dao13.findByPrimeKey(3);
+		beanGroupRoom_Info11.setGroupRoom(grbeanGroupRoom_Info11);
+		String filenameGroupRoom_Info11 = "GroupRoomInfo_0305.jpg";
+		beanGroupRoom_Info11.setImgFileName(filenameGroupRoom_Info11);
+		File fGroupRoom_Info11 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info11.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info11);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info11.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info11);
+		
+		GroupRoom_Info beanGroupRoom_Info12 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info12 = dao13.findByPrimeKey(3);
+		beanGroupRoom_Info12.setGroupRoom(grbeanGroupRoom_Info12);
+		String filenameGroupRoom_Info12 = "GroupRoomInfo_0306.jpg";
+		beanGroupRoom_Info12.setImgFileName(filenameGroupRoom_Info12);
+		File fGroupRoom_Info12 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info12.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info12);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info12.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info12);
+		
+		GroupRoom_Info beanGroupRoom_Info13 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info13 = dao13.findByPrimeKey(4);
+		beanGroupRoom_Info13.setGroupRoom(grbeanGroupRoom_Info13);
+		String filenameGroupRoom_Info13 = "GroupRoomInfo_0401.jpg";
+		beanGroupRoom_Info13.setImgFileName(filenameGroupRoom_Info13);
+		File fGroupRoom_Info13 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info13.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info13);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info13.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info13);
+		
+		GroupRoom_Info beanGroupRoom_Info14 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info14 = dao13.findByPrimeKey(4);
+		beanGroupRoom_Info14.setGroupRoom(grbeanGroupRoom_Info14);
+		String filenameGroupRoom_Info14 = "GroupRoomInfo_0402.jpg";
+		beanGroupRoom_Info14.setImgFileName(filenameGroupRoom_Info14);
+		File fGroupRoom_Info14 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info14.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info14);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info14.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info14);
+		
+		GroupRoom_Info beanGroupRoom_Info15 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info15 = dao13.findByPrimeKey(4);
+		beanGroupRoom_Info15.setGroupRoom(grbeanGroupRoom_Info15);
+		String filenameGroupRoom_Info15 = "GroupRoomInfo_0403.jpg";
+		beanGroupRoom_Info15.setImgFileName(filenameGroupRoom_Info15);
+		File fGroupRoom_Info15 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info15.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info15);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info15.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info15);
+		
+		GroupRoom_Info beanGroupRoom_Info16 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info16 = dao13.findByPrimeKey(4);
+		beanGroupRoom_Info16.setGroupRoom(grbeanGroupRoom_Info16);
+		String filenameGroupRoom_Info16 = "GroupRoomInfo_0404.jpg";
+		beanGroupRoom_Info16.setImgFileName(filenameGroupRoom_Info16);
+		File fGroupRoom_Info16 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info16.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info16);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info16.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info16);
+		
+		GroupRoom_Info beanGroupRoom_Info17 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info17 = dao13.findByPrimeKey(4);
+		beanGroupRoom_Info17.setGroupRoom(grbeanGroupRoom_Info17);
+		String filenameGroupRoom_Info17 = "GroupRoomInfo_0405.jpg";
+		beanGroupRoom_Info17.setImgFileName(filenameGroupRoom_Info17);
+		File fGroupRoom_Info17 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info17.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info17);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info17.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info17);
+		
+		GroupRoom_Info beanGroupRoom_Info18 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info18 = dao13.findByPrimeKey(5);
+		beanGroupRoom_Info18.setGroupRoom(grbeanGroupRoom_Info18);
+		String filenameGroupRoom_Info18 = "GroupRoomInfo_0501.jpg";
+		beanGroupRoom_Info18.setImgFileName(filenameGroupRoom_Info18);
+		File fGroupRoom_Info18 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info18.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info18);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info18.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info18);
+		
+		GroupRoom_Info beanGroupRoom_Info19 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info19 = dao13.findByPrimeKey(5);
+		beanGroupRoom_Info19.setGroupRoom(grbeanGroupRoom_Info19);
+		String filenameGroupRoom_Info19 = "GroupRoomInfo_0502.jpg";
+		beanGroupRoom_Info19.setImgFileName(filenameGroupRoom_Info19);
+		File fGroupRoom_Info19 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info19.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info19);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info19.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info19);
+		
+		GroupRoom_Info beanGroupRoom_Info20 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info20 = dao13.findByPrimeKey(5);
+		beanGroupRoom_Info20.setGroupRoom(grbeanGroupRoom_Info20);
+		String filenameGroupRoom_Info20 = "GroupRoomInfo_0503.jpg";
+		beanGroupRoom_Info20.setImgFileName(filenameGroupRoom_Info20);
+		File fGroupRoom_Info20 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info20.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info20);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info20.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info20);
+		
+		GroupRoom_Info beanGroupRoom_Info21 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info21 = dao13.findByPrimeKey(5);
+		beanGroupRoom_Info21.setGroupRoom(grbeanGroupRoom_Info21);
+		String filenameGroupRoom_Info21 = "GroupRoomInfo_0504.jpg";
+		beanGroupRoom_Info21.setImgFileName(filenameGroupRoom_Info21);
+		File fGroupRoom_Info21 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info21.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info21);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info21.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info21);
+		
+		GroupRoom_Info beanGroupRoom_Info22 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info22 = dao13.findByPrimeKey(5);
+		beanGroupRoom_Info22.setGroupRoom(grbeanGroupRoom_Info22);
+		String filenameGroupRoom_Info22 = "GroupRoomInfo_0505.jpg";
+		beanGroupRoom_Info22.setImgFileName(filenameGroupRoom_Info22);
+		File fGroupRoom_Info22 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info22.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info22);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info22.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info22);
+		
+		GroupRoom_Info beanGroupRoom_Info23 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info23 = dao13.findByPrimeKey(5);
+		beanGroupRoom_Info23.setGroupRoom(grbeanGroupRoom_Info23);
+		String filenameGroupRoom_Info23 = "GroupRoomInfo_0506.jpg";
+		beanGroupRoom_Info23.setImgFileName(filenameGroupRoom_Info23);
+		File fGroupRoom_Info23 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info23.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info23);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info23.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info23);
+		
+		GroupRoom_Info beanGroupRoom_Info24 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info24 = dao13.findByPrimeKey(6);
+		beanGroupRoom_Info24.setGroupRoom(grbeanGroupRoom_Info24);
+		String filenameGroupRoom_Info24 = "GroupRoomInfo_0601.jpg";
+		beanGroupRoom_Info24.setImgFileName(filenameGroupRoom_Info24);
+		File fGroupRoom_Info24 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info24.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info24);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info24.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info24);
+		
+		GroupRoom_Info beanGroupRoom_Info25 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info25 = dao13.findByPrimeKey(6);
+		beanGroupRoom_Info25.setGroupRoom(grbeanGroupRoom_Info25);
+		String filenameGroupRoom_Info25 = "GroupRoomInfo_0602.jpg";
+		beanGroupRoom_Info25.setImgFileName(filenameGroupRoom_Info25);
+		File fGroupRoom_Info25 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info25.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info25);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info25.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info25);
+		
+		GroupRoom_Info beanGroupRoom_Info26 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info26 = dao13.findByPrimeKey(6);
+		beanGroupRoom_Info26.setGroupRoom(grbeanGroupRoom_Info26);
+		String filenameGroupRoom_Info26 = "GroupRoomInfo_0603.jpg";
+		beanGroupRoom_Info26.setImgFileName(filenameGroupRoom_Info26);
+		File fGroupRoom_Info26 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info26.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info26);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info26.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info26);
+		
+		GroupRoom_Info beanGroupRoom_Info27 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info27 = dao13.findByPrimeKey(6);
+		beanGroupRoom_Info27.setGroupRoom(grbeanGroupRoom_Info27);
+		String filenameGroupRoom_Info27 = "GroupRoomInfo_0604.jpg";
+		beanGroupRoom_Info27.setImgFileName(filenameGroupRoom_Info27);
+		File fGroupRoom_Info27 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info27.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info27);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info27.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info27);
+		
+		GroupRoom_Info beanGroupRoom_Info28 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info28 = dao13.findByPrimeKey(7);
+		beanGroupRoom_Info28.setGroupRoom(grbeanGroupRoom_Info28);
+		String filenameGroupRoom_Info28 = "GroupRoomInfo_0701.jpg";
+		beanGroupRoom_Info28.setImgFileName(filenameGroupRoom_Info28);
+		File fGroupRoom_Info28 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info28.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info28);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info28.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info28);
+		
+		GroupRoom_Info beanGroupRoom_Info29 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info29 = dao13.findByPrimeKey(7);
+		beanGroupRoom_Info29.setGroupRoom(grbeanGroupRoom_Info29);
+		String filenameGroupRoom_Info29 = "GroupRoomInfo_0702.jpg";
+		beanGroupRoom_Info29.setImgFileName(filenameGroupRoom_Info29);
+		File fGroupRoom_Info29 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info29.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info29);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info29.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info29);
+		
+		GroupRoom_Info beanGroupRoom_Info30 = new GroupRoom_Info();
+		GroupRoom grbeanGroupRoom_Info30 = dao13.findByPrimeKey(8);
+		beanGroupRoom_Info30.setGroupRoom(grbeanGroupRoom_Info30);
+		String filenameGroupRoom_Info30 = "GroupRoomInfo_0801.jpg";
+		beanGroupRoom_Info30.setImgFileName(filenameGroupRoom_Info30);
+		File fGroupRoom_Info30 = new File("WebContent/res/GroupRoomInfo/" + beanGroupRoom_Info30.getImgFileName());
+		try {
+			InputStream is = new FileInputStream(fGroupRoom_Info30);
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+			int nRead;
+			byte[] data = new byte[1024];
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+				buffer.write(data, 0, nRead);
+				buffer.flush();
+			}
+			data = buffer.toByteArray();
+			is.close();
+			beanGroupRoom_Info30.setGroupPicture(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		dao14.insert(beanGroupRoom_Info30);
+		
+		
+		//insert Joiner_Info
 		Joiner_Info beanJoiner_Info1 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info1 = dao13.findByPrimeKey(1);
 		beanJoiner_Info1.setGroupRoom(gubeanJoiner_Info1);
 		beanJoiner_Info1.setJoinTime(java.sql.Date.valueOf("2014-12-24"));
 		beanJoiner_Info1.setUsername("qksmiper");
 		dao15.insert(beanJoiner_Info1);
-
+		
 		Joiner_Info beanJoiner_Info2 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info2 = dao13.findByPrimeKey(1);
 		beanJoiner_Info2.setGroupRoom(gubeanJoiner_Info2);
 		beanJoiner_Info2.setJoinTime(java.sql.Date.valueOf("2014-12-26"));
 		beanJoiner_Info2.setUsername("Condeeng");
 		dao15.insert(beanJoiner_Info2);
-
+		
 		Joiner_Info beanJoiner_Info3 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info3 = dao13.findByPrimeKey(2);
 		beanJoiner_Info3.setGroupRoom(gubeanJoiner_Info3);
 		beanJoiner_Info3.setJoinTime(java.sql.Date.valueOf("2015-1-1"));
 		beanJoiner_Info3.setUsername("javaprogrammer");
 		dao15.insert(beanJoiner_Info3);
-
+		
 		Joiner_Info beanJoiner_Info4 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info4 = dao13.findByPrimeKey(2);
 		beanJoiner_Info4.setGroupRoom(gubeanJoiner_Info4);
 		beanJoiner_Info4.setJoinTime(java.sql.Date.valueOf("2015-1-5"));
 		beanJoiner_Info4.setUsername("bahagamer");
 		dao15.insert(beanJoiner_Info4);
-
+		
 		Joiner_Info beanJoiner_Info5 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info5 = dao13.findByPrimeKey(2);
 		beanJoiner_Info5.setGroupRoom(gubeanJoiner_Info5);
 		beanJoiner_Info5.setJoinTime(java.sql.Date.valueOf("2015-1-7"));
 		beanJoiner_Info5.setUsername("Hicupok");
 		dao15.insert(beanJoiner_Info5);
-
+		
 		Joiner_Info beanJoiner_Info6 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info6 = dao13.findByPrimeKey(3);
 		beanJoiner_Info6.setGroupRoom(gubeanJoiner_Info6);
 		beanJoiner_Info6.setJoinTime(java.sql.Date.valueOf("2014-11-28"));
 		beanJoiner_Info6.setUsername("cclearner");
 		dao15.insert(beanJoiner_Info6);
-
+		
 		Joiner_Info beanJoiner_Info7 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info7 = dao13.findByPrimeKey(3);
 		beanJoiner_Info7.setGroupRoom(gubeanJoiner_Info7);
 		beanJoiner_Info7.setJoinTime(java.sql.Date.valueOf("2014-12-2"));
 		beanJoiner_Info7.setUsername("steampower");
 		dao15.insert(beanJoiner_Info7);
-
+		
 		Joiner_Info beanJoiner_Info8 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info8 = dao13.findByPrimeKey(3);
 		beanJoiner_Info8.setGroupRoom(gubeanJoiner_Info8);
 		beanJoiner_Info8.setJoinTime(java.sql.Date.valueOf("2014-12-3"));
 		beanJoiner_Info8.setUsername("javaprogrammer");
 		dao15.insert(beanJoiner_Info8);
-
+		
 		Joiner_Info beanJoiner_Info9 = new Joiner_Info();
 		GroupRoom gubeanJoiner_Info9 = dao13.findByPrimeKey(3);
 		beanJoiner_Info9.setGroupRoom(gubeanJoiner_Info9);
@@ -2073,9 +3676,40 @@ public class InsertAndDeleteService {
 		beanJoiner_Info9.setUsername("pewdiepie");
 		dao15.insert(beanJoiner_Info9);
 		
-		// insert GroupRoomMessage
+		//insert GroupRoomMessage
+		GroupRoom_Message beanGroupRoomMessage1 = new GroupRoom_Message();
+		GroupRoom sibeanbeanGroupRoomMessage1 = dao13.findByPrimeKey(1);
+		beanGroupRoomMessage1.setGroupRoom(sibeanbeanGroupRoomMessage1);
+		beanGroupRoomMessage1.setMessageUsername("opchannel");
+		beanGroupRoomMessage1.setMessageContents("請問團可以開的成嗎?");
+		beanGroupRoomMessage1.setMessageTime(java.sql.Date.valueOf("2014-12-30"));
+		dao16.insert(beanGroupRoomMessage1);
 		
-		// insert GroupChoiceGames
+		GroupRoom_Message beanGroupRoomMessage2 = new GroupRoom_Message();
+		GroupRoom sibeanbeanGroupRoomMessage2 = dao13.findByPrimeKey(1);
+		beanGroupRoomMessage2.setGroupRoom(sibeanbeanGroupRoomMessage2);
+		beanGroupRoomMessage2.setMessageUsername("pewdiepie");
+		beanGroupRoomMessage2.setMessageContents("應該可以");
+		beanGroupRoomMessage2.setMessageTime(java.sql.Date.valueOf("2014-12-30"));
+		dao16.insert(beanGroupRoomMessage2);
+		
+		GroupRoom_Message beanGroupRoomMessage3 = new GroupRoom_Message();
+		GroupRoom sibeanbeanGroupRoomMessage3 = dao13.findByPrimeKey(1);
+		beanGroupRoomMessage3.setGroupRoom(sibeanbeanGroupRoomMessage3);
+		beanGroupRoomMessage3.setMessageUsername("cclearner");
+		beanGroupRoomMessage3.setMessageContents("不玩龍與地下城嗎?");
+		beanGroupRoomMessage3.setMessageTime(java.sql.Date.valueOf("2014-1-4"));
+		dao16.insert(beanGroupRoomMessage3);
+		
+		GroupRoom_Message beanGroupRoomMessage4 = new GroupRoom_Message();
+		GroupRoom sibeanbeanGroupRoomMessage4 = dao13.findByPrimeKey(1);
+		beanGroupRoomMessage4.setGroupRoom(sibeanbeanGroupRoomMessage4);
+		beanGroupRoomMessage4.setMessageUsername("steampower");
+		beanGroupRoomMessage4.setMessageContents("我們開團只有2小時, 時間不夠");
+		beanGroupRoomMessage4.setMessageTime(java.sql.Date.valueOf("2014-1-5"));
+		dao16.insert(beanGroupRoomMessage4);
+
+		//insert GroupChoiceGames
 		GroupChoiceGames beanGroupChoiceGames1 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames1 = dao13.findByPrimeKey(1);
 		beanGroupChoiceGames1.setGroupRoom(gubeanGroupChoiceGames1);
@@ -2083,7 +3717,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames1.setBoardGameKind(bgkbeanGroupChoiceGames1);
 		beanGroupChoiceGames1.setBoardGameName("西部無間");
 		dao17.insert(beanGroupChoiceGames1);
-
+		
 		GroupChoiceGames beanGroupChoiceGames2 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames2 = dao13.findByPrimeKey(1);
 		beanGroupChoiceGames2.setGroupRoom(gubeanGroupChoiceGames2);
@@ -2091,7 +3725,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames2.setBoardGameKind(bgkbeanGroupChoiceGames2);
 		beanGroupChoiceGames2.setBoardGameName("矮人礦坑");
 		dao17.insert(beanGroupChoiceGames2);
-
+		
 		GroupChoiceGames beanGroupChoiceGames3 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames3 = dao13.findByPrimeKey(1);
 		beanGroupChoiceGames3.setGroupRoom(gubeanGroupChoiceGames3);
@@ -2099,7 +3733,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames3.setBoardGameKind(bgkbeanGroupChoiceGames3);
 		beanGroupChoiceGames3.setBoardGameName("富饒之城");
 		dao17.insert(beanGroupChoiceGames1);
-
+		
 		GroupChoiceGames beanGroupChoiceGames4 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames4 = dao13.findByPrimeKey(2);
 		beanGroupChoiceGames4.setGroupRoom(gubeanGroupChoiceGames4);
@@ -2107,7 +3741,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames4.setBoardGameKind(bgkbeanGroupChoiceGames4);
 		beanGroupChoiceGames4.setBoardGameName("矮人礦坑");
 		dao17.insert(beanGroupChoiceGames4);
-
+		
 		GroupChoiceGames beanGroupChoiceGames5 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames5 = dao13.findByPrimeKey(2);
 		beanGroupChoiceGames5.setGroupRoom(gubeanGroupChoiceGames5);
@@ -2115,7 +3749,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames5.setBoardGameKind(bgkbeanGroupChoiceGames5);
 		beanGroupChoiceGames5.setBoardGameName("逐夢解語（妙語說書人）");
 		dao17.insert(beanGroupChoiceGames5);
-
+		
 		GroupChoiceGames beanGroupChoiceGames6 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames6 = dao13.findByPrimeKey(2);
 		beanGroupChoiceGames6.setGroupRoom(gubeanGroupChoiceGames6);
@@ -2123,7 +3757,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames6.setBoardGameKind(bgkbeanGroupChoiceGames6);
 		beanGroupChoiceGames6.setBoardGameName("龍與地下城");
 		dao17.insert(beanGroupChoiceGames6);
-
+		
 		GroupChoiceGames beanGroupChoiceGames7 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames7 = dao13.findByPrimeKey(3);
 		beanGroupChoiceGames7.setGroupRoom(gubeanGroupChoiceGames7);
@@ -2131,7 +3765,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames7.setBoardGameKind(bgkbeanGroupChoiceGames7);
 		beanGroupChoiceGames7.setBoardGameName("逐夢解語（妙語說書人）");
 		dao17.insert(beanGroupChoiceGames7);
-
+		
 		GroupChoiceGames beanGroupChoiceGames8 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames8 = dao13.findByPrimeKey(3);
 		beanGroupChoiceGames8.setGroupRoom(gubeanGroupChoiceGames8);
@@ -2139,7 +3773,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames8.setBoardGameKind(bgkbeanGroupChoiceGames8);
 		beanGroupChoiceGames8.setBoardGameName("卡坦拓荒（卡坦島,卡丹島）");
 		dao17.insert(beanGroupChoiceGames8);
-
+		
 		GroupChoiceGames beanGroupChoiceGames9 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames9 = dao13.findByPrimeKey(3);
 		beanGroupChoiceGames9.setGroupRoom(gubeanGroupChoiceGames9);
@@ -2147,7 +3781,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames9.setBoardGameKind(bgkbeanGroupChoiceGames9);
 		beanGroupChoiceGames9.setBoardGameName("西部無間");
 		dao17.insert(beanGroupChoiceGames9);
-
+		
 		GroupChoiceGames beanGroupChoiceGames10 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames10 = dao13.findByPrimeKey(3);
 		beanGroupChoiceGames10.setGroupRoom(gubeanGroupChoiceGames10);
@@ -2155,7 +3789,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames10.setBoardGameKind(bgkbeanGroupChoiceGames10);
 		beanGroupChoiceGames10.setBoardGameName("矮人礦坑");
 		dao17.insert(beanGroupChoiceGames10);
-
+		
 		GroupChoiceGames beanGroupChoiceGames11 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames11 = dao13.findByPrimeKey(3);
 		beanGroupChoiceGames11.setGroupRoom(gubeanGroupChoiceGames11);
@@ -2163,7 +3797,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames11.setBoardGameKind(bgkbeanGroupChoiceGames11);
 		beanGroupChoiceGames11.setBoardGameName("富饒之城");
 		dao17.insert(beanGroupChoiceGames11);
-
+		
 		GroupChoiceGames beanGroupChoiceGames12 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames12 = dao13.findByPrimeKey(3);
 		beanGroupChoiceGames12.setGroupRoom(gubeanGroupChoiceGames12);
@@ -2171,7 +3805,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames12.setBoardGameKind(bgkbeanGroupChoiceGames12);
 		beanGroupChoiceGames12.setBoardGameName("卡卡頌（卡卡城，卡卡送）");
 		dao17.insert(beanGroupChoiceGames12);
-
+		
 		GroupChoiceGames beanGroupChoiceGames13 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames13 = dao13.findByPrimeKey(4);
 		beanGroupChoiceGames13.setGroupRoom(gubeanGroupChoiceGames13);
@@ -2179,7 +3813,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames13.setBoardGameKind(bgkbeanGroupChoiceGames13);
 		beanGroupChoiceGames13.setBoardGameName("西部無間");
 		dao17.insert(beanGroupChoiceGames13);
-
+		
 		GroupChoiceGames beanGroupChoiceGames14 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames14 = dao13.findByPrimeKey(4);
 		beanGroupChoiceGames14.setGroupRoom(gubeanGroupChoiceGames14);
@@ -2187,7 +3821,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames14.setBoardGameKind(bgkbeanGroupChoiceGames14);
 		beanGroupChoiceGames14.setBoardGameName("矮人礦坑");
 		dao17.insert(beanGroupChoiceGames14);
-
+		
 		GroupChoiceGames beanGroupChoiceGames15 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames15 = dao13.findByPrimeKey(4);
 		beanGroupChoiceGames15.setGroupRoom(gubeanGroupChoiceGames15);
@@ -2195,7 +3829,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames15.setBoardGameKind(bgkbeanGroupChoiceGames15);
 		beanGroupChoiceGames15.setBoardGameName("逐夢解語（妙語說書人）");
 		dao17.insert(beanGroupChoiceGames15);
-
+		
 		GroupChoiceGames beanGroupChoiceGames16 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames16 = dao13.findByPrimeKey(4);
 		beanGroupChoiceGames16.setGroupRoom(gubeanGroupChoiceGames16);
@@ -2203,7 +3837,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames16.setBoardGameKind(bgkbeanGroupChoiceGames16);
 		beanGroupChoiceGames16.setBoardGameName("龍與地下城");
 		dao17.insert(beanGroupChoiceGames16);
-
+		
 		GroupChoiceGames beanGroupChoiceGames17 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames17 = dao13.findByPrimeKey(4);
 		beanGroupChoiceGames17.setGroupRoom(gubeanGroupChoiceGames17);
@@ -2211,7 +3845,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames17.setBoardGameKind(bgkbeanGroupChoiceGames17);
 		beanGroupChoiceGames17.setBoardGameName("卡坦拓荒（卡坦島,卡丹島）");
 		dao17.insert(beanGroupChoiceGames17);
-
+		
 		GroupChoiceGames beanGroupChoiceGames18 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames18 = dao13.findByPrimeKey(5);
 		beanGroupChoiceGames18.setGroupRoom(gubeanGroupChoiceGames18);
@@ -2219,7 +3853,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames18.setBoardGameKind(bgkbeanGroupChoiceGames18);
 		beanGroupChoiceGames18.setBoardGameName("抵抗組織");
 		dao17.insert(beanGroupChoiceGames18);
-
+		
 		GroupChoiceGames beanGroupChoiceGames19 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames19 = dao13.findByPrimeKey(5);
 		beanGroupChoiceGames19.setGroupRoom(gubeanGroupChoiceGames19);
@@ -2227,7 +3861,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames19.setBoardGameKind(bgkbeanGroupChoiceGames19);
 		beanGroupChoiceGames19.setBoardGameName("西部無間");
 		dao17.insert(beanGroupChoiceGames19);
-
+		
 		GroupChoiceGames beanGroupChoiceGames20 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames20 = dao13.findByPrimeKey(5);
 		beanGroupChoiceGames20.setGroupRoom(gubeanGroupChoiceGames20);
@@ -2235,7 +3869,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames20.setBoardGameKind(bgkbeanGroupChoiceGames20);
 		beanGroupChoiceGames20.setBoardGameName("矮人礦坑");
 		dao17.insert(beanGroupChoiceGames20);
-
+		
 		GroupChoiceGames beanGroupChoiceGames21 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames21 = dao13.findByPrimeKey(5);
 		beanGroupChoiceGames21.setGroupRoom(gubeanGroupChoiceGames21);
@@ -2243,7 +3877,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames21.setBoardGameKind(bgkbeanGroupChoiceGames21);
 		beanGroupChoiceGames21.setBoardGameName("富饒之城");
 		dao17.insert(beanGroupChoiceGames21);
-
+		
 		GroupChoiceGames beanGroupChoiceGames22 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames22 = dao13.findByPrimeKey(5);
 		beanGroupChoiceGames22.setGroupRoom(gubeanGroupChoiceGames22);
@@ -2251,7 +3885,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames22.setBoardGameKind(bgkbeanGroupChoiceGames22);
 		beanGroupChoiceGames22.setBoardGameName("卡卡頌（卡卡城，卡卡送）");
 		dao17.insert(beanGroupChoiceGames22);
-
+		
 		GroupChoiceGames beanGroupChoiceGames23 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames23 = dao13.findByPrimeKey(6);
 		beanGroupChoiceGames23.setGroupRoom(gubeanGroupChoiceGames23);
@@ -2259,7 +3893,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames23.setBoardGameKind(bgkbeanGroupChoiceGames23);
 		beanGroupChoiceGames23.setBoardGameName("禁忌之島");
 		dao17.insert(beanGroupChoiceGames23);
-
+		
 		GroupChoiceGames beanGroupChoiceGames24 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames24 = dao13.findByPrimeKey(6);
 		beanGroupChoiceGames24.setGroupRoom(gubeanGroupChoiceGames24);
@@ -2267,7 +3901,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames24.setBoardGameKind(bgkbeanGroupChoiceGames24);
 		beanGroupChoiceGames24.setBoardGameName("三國殺");
 		dao17.insert(beanGroupChoiceGames24);
-
+		
 		GroupChoiceGames beanGroupChoiceGames25 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames25 = dao13.findByPrimeKey(6);
 		beanGroupChoiceGames25.setGroupRoom(gubeanGroupChoiceGames25);
@@ -2275,7 +3909,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames25.setBoardGameKind(bgkbeanGroupChoiceGames25);
 		beanGroupChoiceGames25.setBoardGameName("逐夢解語（妙語說書人）");
 		dao17.insert(beanGroupChoiceGames25);
-
+		
 		GroupChoiceGames beanGroupChoiceGames26 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames26 = dao13.findByPrimeKey(6);
 		beanGroupChoiceGames26.setGroupRoom(gubeanGroupChoiceGames26);
@@ -2283,7 +3917,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames26.setBoardGameKind(bgkbeanGroupChoiceGames26);
 		beanGroupChoiceGames26.setBoardGameName("龍與地下城");
 		dao17.insert(beanGroupChoiceGames26);
-
+		
 		GroupChoiceGames beanGroupChoiceGames27 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames27 = dao13.findByPrimeKey(7);
 		beanGroupChoiceGames27.setGroupRoom(gubeanGroupChoiceGames27);
@@ -2291,7 +3925,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames27.setBoardGameKind(bgkbeanGroupChoiceGames27);
 		beanGroupChoiceGames27.setBoardGameName("逐夢解語（妙語說書人）");
 		dao17.insert(beanGroupChoiceGames27);
-
+		
 		GroupChoiceGames beanGroupChoiceGames28 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames28 = dao13.findByPrimeKey(7);
 		beanGroupChoiceGames28.setGroupRoom(gubeanGroupChoiceGames28);
@@ -2299,7 +3933,7 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames28.setBoardGameKind(bgkbeanGroupChoiceGames28);
 		beanGroupChoiceGames28.setBoardGameName("卡坦拓荒（卡坦島,卡丹島）");
 		dao17.insert(beanGroupChoiceGames28);
-
+		
 		GroupChoiceGames beanGroupChoiceGames29 = new GroupChoiceGames();
 		GroupRoom gubeanGroupChoiceGames29 = dao13.findByPrimeKey(8);
 		beanGroupChoiceGames29.setGroupRoom(gubeanGroupChoiceGames29);
@@ -2307,5 +3941,10 @@ public class InsertAndDeleteService {
 		beanGroupChoiceGames29.setBoardGameKind(bgkbeanGroupChoiceGames29);
 		beanGroupChoiceGames29.setBoardGameName("矮人礦坑");
 		dao17.insert(beanGroupChoiceGames29);
+
+		
 	}
+	
 }
+
+
